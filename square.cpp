@@ -46,6 +46,6 @@ void Square::set_left_path(bool left_path) {
 }
 
 void Square::set_diag_path(bool diag_path) {
-    this->diag_path = top_path;
+    this->diag_path = diag_path;
 }
 
