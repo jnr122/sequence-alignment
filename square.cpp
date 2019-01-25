@@ -15,6 +15,14 @@ Square::Square() {
 
 }
 
+Square::Square(int score, bool top_path, bool left_path, bool diag_path) {
+    this->score = score;
+    this->top_path = top_path;
+    this->left_path = left_path;
+    this->diag_path = diag_path;
+
+}
+
 // getters
 int Square::get_score() {
     return this->score;
