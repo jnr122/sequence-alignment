@@ -1,0 +1,8 @@
+//
+// Created by Jonah Rubin on 2019-01-24.
+//
+
+#ifndef SEQUENCE_ALIGNMENT_GRID_H
+#define SEQUENCE_ALIGNMENT_GRID_H
+
+#endif //SEQUENCE_ALIGNMENT_GRID_H
