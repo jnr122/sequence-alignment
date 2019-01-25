@@ -18,6 +18,8 @@ Grid::Grid() {
     this->gap_penalty = -2;
     this->mismatch_penalty = -1;
     this->match_bonus = 1;
+
+    populate();
 }
 
 Grid::Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int match_bonus) {
@@ -27,6 +29,8 @@ Grid::Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int matc
     this->gap_penalty = gap_penalty;
     this->mismatch_penalty = mismatch_penalty;
     this->match_bonus = match_bonus;
+
+    populate();
 }
 
 // getters
@@ -63,12 +67,17 @@ void Grid::set_match_bonus(int match_bonus){
     this->match_bonus = match_bonus;
 }
 
-
 void Grid::populate() {
-    for (int i = 0; i < this->seq2.size(); i++) {
+    for (int j = 0; j < this->seq2.size(); j++) {
         vector<Square> row;
-        for (int j = 0; j < this->seq1.size(); j++) {
+        for (int i = 0; i < this->seq1.size(); i++) {
             Square square;
+            if (i == 0) {
+                square = Square(j * this->gap_penalty);
+            } else if (j == 0) {
+                square = Square(i * this->gap_penalty);
+            }
+
             row.push_back(square);
         }
         this->cols.push_back(row);
@@ -76,21 +85,18 @@ void Grid::populate() {
 }
 
 void Grid::print_grid() {
-    cout << "\t  |";
+    cout << "  |";
     for (int i = 0; i < this->seq1.size(); i++) {
         cout << "  " << left << setw(5) << this->seq1[i];
     }
-    cout << "\n    0 |";
-    for (int i = 0; i < this->seq1.size(); i++) {
-        cout << " " << left << setw(6) << this->gap_penalty * (i + 1);
-    }
+
     cout << "\n";
     for (int i = 0; i < this->seq1.size(); i++) {
-        cout << "---------";
+        cout << "-------";
     }
     cout << "\n";
     for (int i = 0; i < this->cols.size(); i++) {
-        cout << right << setw(1) << this->seq2[i] << setw(4) << right << this->gap_penalty * (i + 1)<< " ";
+        cout << right << setw(1) << this->seq2[i] << " ";
         cout << "|";
         for (int j = 0; j < this->cols[0].size(); j++){
             cout << "  " << left << setw(5) << this->cols[i][j].get_score();
@@ -98,3 +104,4 @@ void Grid::print_grid() {
         cout << "\n";
     }
 }
+
