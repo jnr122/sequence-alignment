@@ -8,9 +8,8 @@
 #include <iomanip>
 #include <stdio.h>
 
-
-
 using namespace std;
+
 
 Grid::Grid() {
     this->seq1 = "atgc";

@@ -67,21 +67,20 @@ public:
 
 
     /*
-     * Default Constructor
+     * Creates grid of Squares from sequence input
      * Requires: nothing
-     * Modifies: nothings
+     * Modifies: cols, the 2d vector of squares
      * Effects: generates actual grid
     */
     void populate();
 
     /*
-     * Default Constructor
+     * Formatted output
      * Requires: nothing
      * Modifies: nothings
-     * Effects: generates actual grid
+     * Effects: generates grid from populate() for user to see
     */
     void print_grid();
-
 
 };
 
