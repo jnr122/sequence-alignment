@@ -5,6 +5,9 @@
 #include "grid.h"
 #include <vector>
 #include <iostream>
+#include <iomanip>
+#include <stdio.h>
+
 
 
 using namespace std;
@@ -79,15 +82,36 @@ void Grid::populate() {
 }
 
 void Grid::print_grid() {
-    cout << "      ";
+    cout << "\t  |";
     for (int i = 0; i < this->seq2.size(); i++) {
-        cout << this->seq2[i] << "  |  ";
+        cout << "  " << left << setw(5) << this->seq2[i];
+
     }
+
+    cout << "\n    0 |";
+
+    for (int i = 0; i < this->seq2.size(); i++) {
+        cout << " " << left << setw(6) << this->gap_penalty * (i + 1);
+
+    }
+
     cout << "\n";
+
+    for (int i = 0; i < this->seq2.size(); i++) {
+        cout << "---------";
+
+    }
+
+    cout << "\n";
+
     for (int i = 0; i < this->cols.size(); i++) {
-        cout << this->seq1[i] << "  |  ";
+        cout << right << setw(1) << this->seq1[i] << setw(4) << right << this->gap_penalty * (i + 1)<< " ";
+
+        cout << "|";
+
         for (int j = 0; j < this->cols[0].size(); j++){
-            cout << "0  |  ";
+            cout << "  " << left << setw(5) << this->cols[i][j].get_score();
+
         }
         cout << "\n";
 
