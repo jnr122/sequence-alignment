@@ -27,7 +27,6 @@ Grid::Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int matc
     this->gap_penalty = gap_penalty;
     this->mismatch_penalty = mismatch_penalty;
     this->match_bonus = match_bonus;
-
 }
 
 // getters
@@ -68,51 +67,34 @@ void Grid::set_match_bonus(int match_bonus){
 void Grid::populate() {
     for (int i = 0; i < this->seq1.size(); i++) {
         vector<Square> row;
-
         for (int j = 0; j < this->seq2.size(); j++) {
             Square square;
             row.push_back(square);
         }
-
         this->cols.push_back(row);
-
     }
-
 }
 
 void Grid::print_grid() {
     cout << "\t  |";
     for (int i = 0; i < this->seq2.size(); i++) {
         cout << "  " << left << setw(5) << this->seq2[i];
-
     }
-
     cout << "\n    0 |";
-
     for (int i = 0; i < this->seq2.size(); i++) {
         cout << " " << left << setw(6) << this->gap_penalty * (i + 1);
-
     }
-
     cout << "\n";
-
     for (int i = 0; i < this->seq2.size(); i++) {
         cout << "---------";
-
     }
-
     cout << "\n";
-
     for (int i = 0; i < this->cols.size(); i++) {
         cout << right << setw(1) << this->seq1[i] << setw(4) << right << this->gap_penalty * (i + 1)<< " ";
-
         cout << "|";
-
         for (int j = 0; j < this->cols[0].size(); j++){
             cout << "  " << left << setw(5) << this->cols[i][j].get_score();
-
         }
         cout << "\n";
-
     }
 }
