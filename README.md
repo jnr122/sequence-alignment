@@ -1,6 +1,12 @@
 # Needleman–Wunsch algorithm
 https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
 
+# Style
+- Egyptian braces
+- Camel case 
+- RME documentation
+- Variables without prefixes
+
 # Errors
 Error Log
 
