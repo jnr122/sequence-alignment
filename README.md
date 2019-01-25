@@ -3,7 +3,7 @@ https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
 
 # Style
 - Egyptian braces
-- Camel case 
+- Snake case 
 - RME documentation
 - Variables without prefixes
 
