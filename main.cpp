@@ -22,9 +22,6 @@ int main() {
     // initliaze grid with given strands and suggested penalties
     Grid grid = Grid(strand1, strand2, -2, -1, 1);
 
-    // populate grid with strands and penalties, no calculations yet
-    grid.populate();
-
     // formatted grid output
     grid.print_grid();
 

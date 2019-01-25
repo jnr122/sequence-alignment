@@ -33,7 +33,6 @@ public:
     */
     Square(int score, bool top_path = false, bool left_path = false, bool diag_path = false);
 
-
     /*
      * Getters for field vars
      * Requires: nothing
@@ -55,8 +54,6 @@ public:
     void set_top_path(bool top_path);
     void set_left_path(bool left_path);
     void set_diag_path(bool diag_path);
-
-
 
 };
 

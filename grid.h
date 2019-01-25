@@ -9,9 +9,7 @@
 #include <vector>
 #include <string>
 
-
 using namespace std;
-
 
 class Grid {
 private:
@@ -22,6 +20,15 @@ private:
     int gap_penalty;
     int mismatch_penalty;
     int match_bonus;
+
+    /*
+     * Creates grid of Squares from sequence input
+     * Requires: nothing
+     * Modifies: cols, the 2d vector of squares
+     * Effects: generates actual grid
+    */
+    void populate();
+
 
 public:
 
@@ -64,15 +71,6 @@ public:
     void set_gap_penalty(int gap_penalty);
     void set_mismatch_penalty(int mismatch_penalty);
     void set_match_bonus(int match_bonus);
-
-
-    /*
-     * Creates grid of Squares from sequence input
-     * Requires: nothing
-     * Modifies: cols, the 2d vector of squares
-     * Effects: generates actual grid
-    */
-    void populate();
 
     /*
      * Formatted output

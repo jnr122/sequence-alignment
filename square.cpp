@@ -12,7 +12,6 @@ Square::Square() {
     this->top_path = false;
     this->left_path = false;
     this->diag_path = false;
-
 }
 
 Square::Square(int score, bool top_path, bool left_path, bool diag_path) {
@@ -20,7 +19,6 @@ Square::Square(int score, bool top_path, bool left_path, bool diag_path) {
     this->top_path = top_path;
     this->left_path = left_path;
     this->diag_path = diag_path;
-
 }
 
 // getters
