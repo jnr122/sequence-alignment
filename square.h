@@ -26,6 +26,15 @@ public:
     Square();
 
     /*
+     * Overloaded Constructor
+     * Requires: int score, boolean path vars
+     * Modifies: square score, path
+     * Effects: constructs current square to given vals
+    */
+    Square(int score, bool top_path = false, bool left_path = false, bool diag_path = false);
+
+
+    /*
      * Getters for field vars
      * Requires: nothing
      * Modifies: nothing
