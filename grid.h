@@ -31,11 +31,11 @@ private:
 
     /*
      * Recursively traverses matrix, calculating scores
-     * Requires: cols, the 2d vector of squares, a starting index pair (i,j)
+     * Requires: a starting index pair (i,j)
      * Modifies: cols, the 2d vector of squares
      * Effects: calculates and sets correct scores
     */
-    int calculate(vector<vector<Square>> matrix, int i, int j);
+    int calculate(int i, int j);
 
     /*
      * Gets the max of 3 scores
@@ -43,7 +43,15 @@ private:
      * Modifies: nothing
      * Effects: gives max
     */
-    int max(int top, int left, int diag);
+    int max(int top, int left, int diag, int i, int j);
+
+    /*
+     * Calculates match score based on defined function
+     * Requires: two strings
+     * Modifies: nothing
+     * Effects: returns calculated score
+    */
+    int get_match_score(char ch1, char ch2);
 
 
 public:
