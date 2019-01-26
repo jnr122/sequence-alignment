@@ -7,6 +7,8 @@
 #include <iostream>
 #include <iomanip>
 #include <stdio.h>
+#include <string>
+
 
 
 #include <stdlib.h>     /* srand, rand */
@@ -89,34 +91,63 @@ void Grid::populate() {
         this->cols.push_back(row);
     }
 
-    calculate(this->cols, this->seq2.size()-1, this->seq1.size()-1);
+    calculate(this->seq2.size()-1, this->seq1.size()-1);
 
 }
 
-int Grid::calculate(vector<vector<Square>> cols, int i, int j) {
+int Grid::calculate(int i, int j) {
 
-    // base case
-    // square above left and diag of ij are activated
+
+//     base case
+//     square above left and diag of ij are activated
     if (cols[i-1][j-1].is_active() and cols[i][j-1].is_active() and cols[i-1][j].is_active()) {
-        cout << i << ", " << j;
+        int top, left, diag;
+
+        diag = get_match_score(this->seq1.at(j), this->seq2.at(i));
+//        cout << "******" << diag;
+
+//        this->cols[i][j] = max();
+
         return 0;
 
     } else {
-        return calculate(cols, i-1, j-1);
+//        return ;
     }
 
-    // do top calculation
 
-    // do left calculation
 
-    // do diag calculation
+}
 
+int Grid::get_match_score(char ch1, char ch2) {
+    if (ch1 == ch2) {
+        return 1;
+    }
 
     return 0;
 }
 
-int Grid::max(int top, int left, int diag) {
-    return 0;
+int Grid::max(int top, int left, int diag, int i, int j) {
+
+    if (top >= left)  {
+
+        if (top >= diag) {
+            this->cols[i][j].set_top_path(true);
+            return top;
+        } else {
+            this->cols[i][j].set_diag_path(true);
+            return diag;
+        }
+
+    } else {
+        if (left >= diag) {
+            this->cols[i][j].set_left_path(true);
+            return left;
+        } else {
+            this->cols[i][j].set_diag_path(true);
+            return diag;
+        }
+    }
+
 }
 
 void Grid::print_grid() {
