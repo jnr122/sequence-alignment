@@ -8,8 +8,11 @@
 #include <iomanip>
 #include <stdio.h>
 
-using namespace std;
 
+#include <stdlib.h>     /* srand, rand */
+
+
+using namespace std;
 
 Grid::Grid() {
     this->seq1 = "atgc";
@@ -68,20 +71,52 @@ void Grid::set_match_bonus(int match_bonus){
 }
 
 void Grid::populate() {
-    for (int j = 0; j < this->seq2.size(); j++) {
+    for (int i = 0; i < this->seq2.size(); i++) {
         vector<Square> row;
-        for (int i = 0; i < this->seq1.size(); i++) {
+        for (int j = 0; j < this->seq1.size(); j++) {
             Square square;
-            if (i == 0) {
-                square = Square(j * this->gap_penalty);
-            } else if (j == 0) {
+            if (j == 0) {
                 square = Square(i * this->gap_penalty);
+            } else if (i == 0) {
+                square = Square(j * this->gap_penalty);
             }
+//            int v1 = rand() % 100;
+//            Square square = Square(v1);
+
 
             row.push_back(square);
         }
         this->cols.push_back(row);
     }
+
+    calculate(this->cols, this->seq2.size()-1, this->seq1.size()-1);
+
+}
+
+int Grid::calculate(vector<vector<Square>> cols, int i, int j) {
+
+    // base case
+    // square above left and diag of ij are activated
+    if (cols[i-1][j-1].is_active() and cols[i][j-1].is_active() and cols[i-1][j].is_active()) {
+        cout << i << ", " << j;
+        return 0;
+
+    } else {
+        return calculate(cols, i-1, j-1);
+    }
+
+    // do top calculation
+
+    // do left calculation
+
+    // do diag calculation
+
+
+    return 0;
+}
+
+int Grid::max(int top, int left, int diag) {
+    return 0;
 }
 
 void Grid::print_grid() {
@@ -104,4 +139,5 @@ void Grid::print_grid() {
         cout << "\n";
     }
 }
+
 

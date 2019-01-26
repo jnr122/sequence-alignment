@@ -12,13 +12,15 @@ Square::Square() {
     this->top_path = false;
     this->left_path = false;
     this->diag_path = false;
+    this->active = false;
 }
 
-Square::Square(int score, bool top_path, bool left_path, bool diag_path) {
+Square::Square(int score, bool top_path, bool left_path, bool diag_path, bool active) {
     this->score = score;
     this->top_path = top_path;
     this->left_path = left_path;
     this->diag_path = diag_path;
+    this->active = active;
 }
 
 // getters
@@ -41,6 +43,7 @@ bool Square::get_diag_path() {
 // setters
 void Square::set_score(int score) {
     this->score = score;
+    this->active = true;
 }
 
 void Square::set_top_path(bool top_path) {
@@ -54,4 +57,9 @@ void Square::set_left_path(bool left_path) {
 void Square::set_diag_path(bool diag_path) {
     this->diag_path = diag_path;
 }
+
+bool Square::is_active() {
+    return this->active;
+};
+
 
