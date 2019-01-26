@@ -14,7 +14,7 @@ private:
     bool top_path;
     bool left_path;
     bool diag_path;
-
+    bool active;
 public:
 
     /*
@@ -31,7 +31,7 @@ public:
      * Modifies: square score, path
      * Effects: constructs current square to given vals
     */
-    Square(int score, bool top_path = false, bool left_path = false, bool diag_path = false);
+    Square(int score, bool top_path = false, bool left_path = false, bool diag_path = false, bool active = true);
 
     /*
      * Getters for field vars
@@ -55,6 +55,13 @@ public:
     void set_left_path(bool left_path);
     void set_diag_path(bool diag_path);
 
+    /*
+     * Sentinel for active squares
+     * Requires: nothing
+     * Modifies: nothing
+     * Effects: returns bool active
+    */
+    bool is_active();
 };
 
 #endif //SEQUENCE_ALIGNMENT_SQUARE_H

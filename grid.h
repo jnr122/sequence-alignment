@@ -29,6 +29,22 @@ private:
     */
     void populate();
 
+    /*
+     * Recursively traverses matrix, calculating scores
+     * Requires: cols, the 2d vector of squares, a starting index pair (i,j)
+     * Modifies: cols, the 2d vector of squares
+     * Effects: calculates and sets correct scores
+    */
+    int calculate(vector<vector<Square>> matrix, int i, int j);
+
+    /*
+     * Gets the max of 3 scores
+     * Requires: 3 scores
+     * Modifies: nothing
+     * Effects: gives max
+    */
+    int max(int top, int left, int diag);
+
 
 public:
 
