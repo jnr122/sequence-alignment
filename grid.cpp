@@ -11,7 +11,7 @@
 
 
 
-#include <stdlib.h>     /* srand, rand */
+#include <stdlib.h>
 
 
 using namespace std;
@@ -73,14 +73,15 @@ void Grid::set_match_bonus(int match_bonus){
 }
 
 void Grid::populate() {
-    for (int i = 0; i < this->seq2.size(); i++) {
+    // set up matrix with defualt values
+    for (int i = 0; i <= seq2.size(); i++) {
         vector<Square> row;
-        for (int j = 0; j < this->seq1.size(); j++) {
+        for (int j = 0; j <= seq1.size(); j++) {
             Square square;
             if (j == 0) {
-                square = Square(i * this->gap_penalty);
+                square = Square(i * gap_penalty);
             } else if (i == 0) {
-                square = Square(j * this->gap_penalty);
+                square = Square(j * gap_penalty);
             }
 //            int v1 = rand() % 100;
 //            Square square = Square(v1);
@@ -88,33 +89,41 @@ void Grid::populate() {
 
             row.push_back(square);
         }
-        this->cols.push_back(row);
+        cols.push_back(row);
     }
 
-    calculate(this->seq2.size()-1, this->seq1.size()-1);
+    cols[seq2.size()][seq1.size()].set_score(calculate(seq2.size(), seq1.size()));
+//    calculate(seq2.size()-1, seq1.size()-1);
 
 }
 
 int Grid::calculate(int i, int j) {
+    int top, left, diag;
 
 
 //     base case
 //     square above left and diag of ij are activated
     if (cols[i-1][j-1].is_active() and cols[i][j-1].is_active() and cols[i-1][j].is_active()) {
-        int top, left, diag;
 
-        diag = get_match_score(this->seq1.at(j), this->seq2.at(i));
-//        cout << "******" << diag;
+        top = cols[i-1][j].get_score() + gap_penalty;
+        left = cols[i][j-1].get_score() + gap_penalty;
+        diag = get_match_score(seq1.at(j-1), seq2.at(i-1)) + cols[i-1][j-1].get_score();
 
-//        this->cols[i][j] = max();
 
-        return 0;
+//        cols[i][j].set_score()
+        return get_max(top, left, diag, i, j);
 
     } else {
-//        return ;
+
+        // recursive case
+        cout <<"recur"<< endl;
+        diag = calculate(i-1,j-1);
+        top = calculate(i-1,j);
+        left = calculate(i,j-1);
+
+        // switch return to set score to get rid of redundancy?
+        return get_max(top, left, diag, i ,j);
     }
-
-
 
 }
 
@@ -126,24 +135,32 @@ int Grid::get_match_score(char ch1, char ch2) {
     return 0;
 }
 
-int Grid::max(int top, int left, int diag, int i, int j) {
-
+int Grid::get_max(int top, int left, int diag, int i, int j) {
+    // lots of redundancy here
     if (top >= left)  {
 
         if (top >= diag) {
-            this->cols[i][j].set_top_path(true);
+            cols[i][j].set_top_path(true);
+            cols[i][j].set_score(top);
+
             return top;
         } else {
-            this->cols[i][j].set_diag_path(true);
+            cols[i][j].set_diag_path(true);
+            cols[i][j].set_score(diag);
+
             return diag;
         }
 
     } else {
         if (left >= diag) {
-            this->cols[i][j].set_left_path(true);
+            cols[i][j].set_left_path(true);
+            cols[i][j].set_score(left);
+
             return left;
         } else {
-            this->cols[i][j].set_diag_path(true);
+            cols[i][j].set_diag_path(true);
+            cols[i][j].set_score(diag);
+
             return diag;
         }
     }
@@ -151,21 +168,26 @@ int Grid::max(int top, int left, int diag, int i, int j) {
 }
 
 void Grid::print_grid() {
-    cout << "  |";
-    for (int i = 0; i < this->seq1.size(); i++) {
-        cout << "  " << left << setw(5) << this->seq1[i];
+    cout << "  |\t\t  ";
+    for (int i = 0; i < seq1.size(); i++) {
+        cout << "  " << left << setw(5) << seq1[i];
     }
 
     cout << "\n";
-    for (int i = 0; i < this->seq1.size(); i++) {
-        cout << "-------";
+    for (int i = 0; i < seq1.size(); i++) {
+        cout << "----------";
     }
     cout << "\n";
-    for (int i = 0; i < this->cols.size(); i++) {
-        cout << right << setw(1) << this->seq2[i] << " ";
-        cout << "|";
-        for (int j = 0; j < this->cols[0].size(); j++){
-            cout << "  " << left << setw(5) << this->cols[i][j].get_score();
+    for (int i = 0; i < cols.size(); i++) {
+        if (i > 0) {
+            cout << right << setw(1) << seq2[i-1] << " ";
+            cout << "|";
+        } else {
+            cout << "  |";
+        }
+
+        for (int j = 0; j < cols[0].size(); j++){
+            cout << "  " << left << setw(5) << cols[i][j].get_score();
         }
         cout << "\n";
     }
