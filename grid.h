@@ -43,7 +43,7 @@ private:
      * Modifies: nothing
      * Effects: gives max
     */
-    int max(int top, int left, int diag, int i, int j);
+    int get_max(int top, int left, int diag, int i, int j);
 
     /*
      * Calculates match score based on defined function
