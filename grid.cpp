@@ -90,7 +90,10 @@ void Grid::populate() {
         cols.push_back(row);
     }
 
+    // definitely a better way to compute the last square
     cols[seq2.size()][seq1.size()].set_score(calculate(seq2.size(), seq1.size()));
+    cols[seq2.size()][seq1.size()].set_score(calculate(seq2.size(), seq1.size()));
+
 
 }
 
@@ -115,13 +118,15 @@ int Grid::calculate(int i, int j) {
         // recursive case
         // breaks when seqs are different sizes
         cout <<"recur"<< endl;
-        diag = calculate(i-1,j-1);
-        top = calculate(i-1,j);
-        left = calculate(i,j-1);
 
-        // switch return to set score to get rid of redundancy?
+        if (i > 1 and j > 1)
+            diag = calculate(i - 1, j - 1);
+        if (i > 1)
+            top = calculate(i-1,j);
+        if (j > 1)
+            left = calculate(i,j-1);
+
         calculate(i, j);
-//        return get_max(top, left, diag, i ,j);
     }
 
 }
