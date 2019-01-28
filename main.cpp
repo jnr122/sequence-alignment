@@ -2,7 +2,6 @@
 #include "grid.h"
 
 #include <iostream>
-#include <vector>
 #include <string>
 
 using namespace std;
@@ -12,7 +11,7 @@ int main() {
 
 
 
-    // declare strants to be aligned
+    // declare strands to be aligned
     string strand1, strand2;
 
     // get strands
@@ -22,7 +21,7 @@ int main() {
     cout << "Enter the second DNA sequence: ";
     getline(cin, strand2);
 
-    // initliaze grid with given strands and suggested penalties
+    // initliaze grid with given strands and penalties
     Grid grid = Grid(strand1, strand2, -2, -1, 1);
 
     // formatted grid output
