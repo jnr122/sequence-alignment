@@ -25,25 +25,25 @@ Square::Square(int score, bool top_path, bool left_path, bool diag_path, bool ac
 
 // getters
 int Square::get_score() {
-    return this->score;
+    return score;
 }
 
 bool Square::get_top_path() {
-    return this->top_path;
+    return top_path;
 }
 
 bool Square::get_left_path() {
-    return this->left_path;
+    return left_path;
 }
 
 bool Square::get_diag_path() {
-    return this->diag_path;
+    return diag_path;
 }
 
 // setters
 void Square::set_score(int score) {
     this->score = score;
-    this->active = true;
+    active = true;
 }
 
 void Square::set_top_path(bool top_path) {
@@ -59,7 +59,7 @@ void Square::set_diag_path(bool diag_path) {
 }
 
 bool Square::is_active() {
-    return this->active;
+    return active;
 };
 
 

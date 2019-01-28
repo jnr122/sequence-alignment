@@ -38,19 +38,19 @@ Grid::Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int matc
 
 // getters
 string Grid::get_seq1() {
-    return this->seq1;
+    return seq1;
 }
 string Grid::get_seq2() {
-    return this->seq2;
+    return seq2;
 }
 int Grid::get_gap_penalty() {
-    return this->gap_penalty;
+    return gap_penalty;
 }
 int Grid::get_mismatch_penalty() {
-    return this->mismatch_penalty;
+    return mismatch_penalty;
 }
 int Grid::get_match_bonus() {
-    return this->mismatch_penalty;
+    return mismatch_penalty;
 }
 
 //setters
@@ -94,7 +94,6 @@ void Grid::populate() {
     cols[seq2.size()][seq1.size()].set_score(calculate(seq2.size(), seq1.size()));
     cols[seq2.size()][seq1.size()].set_score(calculate(seq2.size(), seq1.size()));
 
-
 }
 
 int Grid::calculate(int i, int j) {
@@ -102,7 +101,6 @@ int Grid::calculate(int i, int j) {
 
 
 //     base case
-//     square above left and diag of ij are activated
     if (cols[i-1][j-1].is_active() and cols[i][j-1].is_active() and cols[i-1][j].is_active()) {
 
         top = cols[i-1][j].get_score() + gap_penalty;
@@ -110,21 +108,17 @@ int Grid::calculate(int i, int j) {
         diag = get_match_score(seq1.at(j-1), seq2.at(i-1)) + cols[i-1][j-1].get_score();
 
 
-//        cols[i][j].set_score()
         return get_max(top, left, diag, i, j);
 
     } else {
 
         // recursive case
-        // breaks when seqs are different sizes
-        cout <<"recur"<< endl;
-
         if (i > 1 and j > 1)
-            diag = calculate(i - 1, j - 1);
+            calculate(i - 1, j - 1);
         if (i > 1)
-            top = calculate(i-1,j);
+            calculate(i-1,j);
         if (j > 1)
-            left = calculate(i,j-1);
+            calculate(i,j-1);
 
         calculate(i, j);
     }
@@ -133,10 +127,10 @@ int Grid::calculate(int i, int j) {
 
 int Grid::get_match_score(char ch1, char ch2) {
     if (ch1 == ch2) {
-        return 1;
+        return match_bonus;
     }
 
-    return -1;
+    return mismatch_penalty;
 }
 
 int Grid::get_max(int top, int left, int diag, int i, int j) {
