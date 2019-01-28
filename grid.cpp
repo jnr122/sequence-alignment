@@ -19,7 +19,6 @@ using namespace std;
 Grid::Grid() {
     this->seq1 = "atgc";
     this->seq2 = "cgta";
-    this->cols;
     this->gap_penalty = -2;
     this->mismatch_penalty = -1;
     this->match_bonus = 1;
@@ -30,7 +29,6 @@ Grid::Grid() {
 Grid::Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int match_bonus) {
     this->seq1 = s1;
     this->seq2 = s2;
-    this->cols;
     this->gap_penalty = gap_penalty;
     this->mismatch_penalty = mismatch_penalty;
     this->match_bonus = match_bonus;
@@ -93,7 +91,6 @@ void Grid::populate() {
     }
 
     cols[seq2.size()][seq1.size()].set_score(calculate(seq2.size(), seq1.size()));
-//    calculate(seq2.size()-1, seq1.size()-1);
 
 }
 
@@ -116,13 +113,15 @@ int Grid::calculate(int i, int j) {
     } else {
 
         // recursive case
+        // breaks when seqs are different sizes
         cout <<"recur"<< endl;
         diag = calculate(i-1,j-1);
         top = calculate(i-1,j);
         left = calculate(i,j-1);
 
         // switch return to set score to get rid of redundancy?
-        return get_max(top, left, diag, i ,j);
+        calculate(i, j);
+//        return get_max(top, left, diag, i ,j);
     }
 
 }
@@ -132,7 +131,7 @@ int Grid::get_match_score(char ch1, char ch2) {
         return 1;
     }
 
-    return 0;
+    return -1;
 }
 
 int Grid::get_max(int top, int left, int diag, int i, int j) {
