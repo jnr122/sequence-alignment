@@ -9,8 +9,6 @@ using namespace std;
 
 int main() {
 
-
-
     // declare strands to be aligned
     string strand1, strand2;
 
@@ -26,7 +24,6 @@ int main() {
 
     // formatted grid output
     grid.print_grid();
-
 
 
     return 0;
