@@ -15,6 +15,9 @@ class Grid {
 private:
     string seq1;
     string seq2;
+    string aligned1;
+    string aligned2;
+
     vector<vector<Square>> cols;
 
     int gap_penalty;
@@ -52,6 +55,14 @@ private:
      * Effects: returns calculated score
     */
     int get_match_score(char ch1, char ch2);
+
+    /*
+     * Uses assembled grid to get optimal alignment
+     * Requires: nothing
+     * Modifies: nothing
+     * Effects: returns two aligned strings in a vector
+    */
+    string traceback(int i, int j, string seq);
 
 
 public:

@@ -22,6 +22,8 @@ Grid::Grid() {
     this->gap_penalty = -2;
     this->mismatch_penalty = -1;
     this->match_bonus = 1;
+    this->aligned1 = "";
+    this->aligned2 = "";
 
     populate();
 }
@@ -32,6 +34,9 @@ Grid::Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int matc
     this->gap_penalty = gap_penalty;
     this->mismatch_penalty = mismatch_penalty;
     this->match_bonus = match_bonus;
+    this->aligned1 = "";
+    this->aligned2 = "";
+
 
     populate();
 }
@@ -71,7 +76,7 @@ void Grid::set_match_bonus(int match_bonus){
 }
 
 void Grid::populate() {
-    // set up matrix with defualt values
+    // set up matrix with default values
     for (int i = 0; i <= seq2.size(); i++) {
         vector<Square> row;
         for (int j = 0; j <= seq1.size(); j++) {
@@ -81,9 +86,6 @@ void Grid::populate() {
             } else if (i == 0) {
                 square = Square(j * gap_penalty);
             }
-//            int v1 = rand() % 100;
-//            Square square = Square(v1);
-
 
             row.push_back(square);
         }
@@ -94,24 +96,27 @@ void Grid::populate() {
     cols[seq2.size()][seq1.size()].set_score(calculate(seq2.size(), seq1.size()));
     cols[seq2.size()][seq1.size()].set_score(calculate(seq2.size(), seq1.size()));
 
+    string s = traceback(seq2.size(), seq1.size(), seq1);
+    cout << s << endl;
+
+    string s2 = traceback(seq2.size(), seq1.size(), seq2);
+    cout << s2 << endl;
+
 }
+
+
 
 int Grid::calculate(int i, int j) {
     int top, left, diag;
 
-
-//     base case
+    // base case
     if (cols[i-1][j-1].is_active() and cols[i][j-1].is_active() and cols[i-1][j].is_active()) {
-
         top = cols[i-1][j].get_score() + gap_penalty;
         left = cols[i][j-1].get_score() + gap_penalty;
         diag = get_match_score(seq1.at(j-1), seq2.at(i-1)) + cols[i-1][j-1].get_score();
-
-
         return get_max(top, left, diag, i, j);
 
     } else {
-
         // recursive case
         if (i > 1 and j > 1)
             calculate(i - 1, j - 1);
@@ -119,9 +124,39 @@ int Grid::calculate(int i, int j) {
             calculate(i-1,j);
         if (j > 1)
             calculate(i,j-1);
-
         calculate(i, j);
     }
+}
+
+// do recursively
+string Grid::traceback(int i, int j, string seq) {
+    string s;
+
+    // base case
+    if (i == 0 or j == 0){
+        return "";
+    }
+
+    // move out diag so it doesn't need to be coded twice
+    if (seq == seq1) {
+        if (cols[i][j].get_top_path()) {
+            return "-" + traceback(i, j-1, seq);
+        } else if (cols[i][j].get_diag_path()) {
+            return string(1, (seq.at(j-1))) + traceback(i-1, j-1, seq);
+        } else {
+            return string(1, (seq.at(j-1))) + traceback(i-1, j, seq);
+        }
+    } else {
+        if (cols[i][j].get_top_path()) {
+            return string(1, (seq.at(i-1))) + traceback(i-1, j, seq);
+        } else if (cols[i][j].get_diag_path()) {
+            return string(1, (seq.at(i-1))) + traceback(i-1, j-1, seq);
+        } else {
+            return "-" + traceback(i, j-1, seq);
+        }
+    }
+
+
 
 }
 
@@ -129,40 +164,32 @@ int Grid::get_match_score(char ch1, char ch2) {
     if (ch1 == ch2) {
         return match_bonus;
     }
-
     return mismatch_penalty;
 }
 
 int Grid::get_max(int top, int left, int diag, int i, int j) {
     // lots of redundancy here
     if (top >= left)  {
-
         if (top >= diag) {
             cols[i][j].set_top_path(true);
             cols[i][j].set_score(top);
-
             return top;
         } else {
             cols[i][j].set_diag_path(true);
             cols[i][j].set_score(diag);
-
             return diag;
         }
-
     } else {
         if (left >= diag) {
             cols[i][j].set_left_path(true);
             cols[i][j].set_score(left);
-
             return left;
         } else {
             cols[i][j].set_diag_path(true);
             cols[i][j].set_score(diag);
-
             return diag;
         }
     }
-
 }
 
 void Grid::print_grid() {
