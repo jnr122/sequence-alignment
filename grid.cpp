@@ -23,8 +23,6 @@ Grid::Grid() {
     this->gap_penalty = -2;
     this->mismatch_penalty = -1;
     this->match_bonus = 1;
-//    this->aligned1 = "";
-//    this->aligned2 = "";
 
     populate();
 }
@@ -36,55 +34,76 @@ Grid::Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int matc
     this->gap_penalty = gap_penalty;
     this->mismatch_penalty = mismatch_penalty;
     this->match_bonus = match_bonus;
-//    this->aligned1 = "";
-//    this->aligned2 = "";
 
     populate();
 }
 
-// TODO: use references for getters and setters
-
-// getters
-string Grid::get_seq1() {
+// getters and setters
+const string &Grid::get_seq1() const {
     return seq1;
 }
-string Grid::get_seq2() {
-    return seq2;
-}
-int Grid::get_gap_penalty() {
-    return gap_penalty;
-}
-int Grid::get_mismatch_penalty() {
-    return mismatch_penalty;
-}
-int Grid::get_match_bonus() {
-    return mismatch_penalty;
+
+void Grid::set_seq1(const string &seq1) {
+    Grid::seq1 = seq1;
 }
 
-string Grid::get_aligned1() {
+const string &Grid::get_seq2() const {
+    return seq2;
+}
+
+void Grid::set_seq2(const string &seq2) {
+    Grid::seq2 = seq2;
+}
+
+const string &Grid::get_aligned1() const {
     return aligned1;
 }
 
-string Grid::get_aligned2() {
+void Grid::set_aligned1(const string &aligned1) {
+    Grid::aligned1 = aligned1;
+}
+
+const string &Grid::get_aligned2() const {
     return aligned2;
 }
 
-//setters
-void Grid::set_seq1(string seq1) {
-    this->seq1 = seq1;
+void Grid::set_aligned2(const string &aligned2) {
+    Grid::aligned2 = aligned2;
 }
-void Grid::set_seq2(string seq2) {
-    this->seq2 = seq2;
+
+const vector<vector<Square>> &Grid::get_cols() const {
+    return cols;
 }
+
+void Grid::set_cols(const vector<vector<Square>> &cols) {
+    Grid::cols = cols;
+}
+
+int Grid::get_gap_penalty() const {
+    return gap_penalty;
+}
+
 void Grid::set_gap_penalty(int gap_penalty) {
-    this->gap_penalty = gap_penalty;
+    Grid::gap_penalty = gap_penalty;
 }
+
+int Grid::get_mismatch_penalty() const {
+    return mismatch_penalty;
+}
+
 void Grid::set_mismatch_penalty(int mismatch_penalty) {
-    this->mismatch_penalty = mismatch_penalty;
+    Grid::mismatch_penalty = mismatch_penalty;
 }
-void Grid::set_match_bonus(int match_bonus){
-    this->match_bonus = match_bonus;
+
+int Grid::get_match_bonus() const {
+    return match_bonus;
 }
+
+void Grid::set_match_bonus(int match_bonus) {
+    Grid::match_bonus = match_bonus;
+}
+
+
 
 // TODO: get rid of all the redundancies here
 void Grid::populate() {
@@ -230,5 +249,6 @@ void Grid::print_grid() {
         cout << "\n";
     }
 }
+
 
 

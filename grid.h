@@ -83,31 +83,37 @@ public:
     */
     Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int match_bonus);
 
-    /*
-     * Getters
-     * Requires: nothing
-     * Modifies: nothing
-     * Effects: returns fields
-     */
-    string get_seq1();
-    string get_seq2();
-    int get_gap_penalty();
-    int get_mismatch_penalty();
-    int get_match_bonus();
-    string get_aligned1();
-    string get_aligned2();
+    // getters and setters
+    const string &get_seq1() const;
 
+    void set_seq1(const string &seq1);
 
-    /*
-     * Setters
-     * Requires: nothing
-     * Modifies: fields
-     * Effects: sets field vars
-     */
-    void set_seq1(string seq1);
-    void set_seq2(string seq2);
+    const string &get_seq2() const;
+
+    void set_seq2(const string &seq2);
+
+    const string &get_aligned1() const;
+
+    void set_aligned1(const string &aligned1);
+
+    const string &get_aligned2() const;
+
+    void set_aligned2(const string &aligned2);
+
+    const vector<vector<Square>> &get_cols() const;
+
+    void set_cols(const vector<vector<Square>> &cols);
+
+    int get_gap_penalty() const;
+
     void set_gap_penalty(int gap_penalty);
+
+    int get_mismatch_penalty() const;
+
     void set_mismatch_penalty(int mismatch_penalty);
+
+    int get_match_bonus() const;
+
     void set_match_bonus(int match_bonus);
 
     /*
