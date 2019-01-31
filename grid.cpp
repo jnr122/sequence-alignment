@@ -16,29 +16,33 @@
 
 using namespace std;
 
+// TODO: add destructor
 Grid::Grid() {
     this->seq1 = "atgc";
     this->seq2 = "cgta";
     this->gap_penalty = -2;
     this->mismatch_penalty = -1;
     this->match_bonus = 1;
-    this->aligned1 = "";
-    this->aligned2 = "";
+//    this->aligned1 = "";
+//    this->aligned2 = "";
 
     populate();
 }
 
+// TODO: add error handling
 Grid::Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int match_bonus) {
     this->seq1 = s1;
     this->seq2 = s2;
     this->gap_penalty = gap_penalty;
     this->mismatch_penalty = mismatch_penalty;
     this->match_bonus = match_bonus;
-    this->aligned1 = "";
-    this->aligned2 = "";
+//    this->aligned1 = "";
+//    this->aligned2 = "";
 
     populate();
 }
+
+// TODO: use references for getters and setters
 
 // getters
 string Grid::get_seq1() {
@@ -82,6 +86,7 @@ void Grid::set_match_bonus(int match_bonus){
     this->match_bonus = match_bonus;
 }
 
+// TODO: get rid of all the redundancies here
 void Grid::populate() {
     // set up matrix with default values
     for (int i = 0; i <= seq2.size(); i++) {
@@ -111,7 +116,7 @@ void Grid::populate() {
 }
 
 
-
+// TODO: get rid of all the redundancies here
 int Grid::calculate(int i, int j) {
     int top, left, diag;
 
@@ -134,7 +139,7 @@ int Grid::calculate(int i, int j) {
     }
 }
 
-// do recursively
+// TODO: get rid of all the redundancies here
 string Grid::traceback(int i, int j, string seq) {
     string s;
 
@@ -173,6 +178,7 @@ int Grid::get_match_score(char ch1, char ch2) {
     return mismatch_penalty;
 }
 
+// TODO: get rid of all the redundancies here
 int Grid::get_max(int top, int left, int diag, int i, int j) {
     // lots of redundancy here
     if (top >= left)  {
@@ -198,6 +204,7 @@ int Grid::get_max(int top, int left, int diag, int i, int j) {
     }
 }
 
+// TODO: get rid of all the redundancies here
 void Grid::print_grid() {
     cout << "  |\t\t  ";
     for (int i = 0; i < seq1.size(); i++) {
