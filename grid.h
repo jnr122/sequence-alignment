@@ -94,6 +94,9 @@ public:
     int get_gap_penalty();
     int get_mismatch_penalty();
     int get_match_bonus();
+    string get_aligned1();
+    string get_aligned2();
+
 
     /*
      * Setters

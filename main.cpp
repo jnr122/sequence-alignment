@@ -25,6 +25,10 @@ int main() {
     // formatted grid output
     grid.print_grid();
 
+    // print best global alignmemnts
+    cout << grid.get_aligned1() << endl;
+    cout << grid.get_aligned2() << endl;
+
 
     return 0;
 }

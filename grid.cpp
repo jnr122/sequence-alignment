@@ -37,7 +37,6 @@ Grid::Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int matc
     this->aligned1 = "";
     this->aligned2 = "";
 
-
     populate();
 }
 
@@ -56,6 +55,14 @@ int Grid::get_mismatch_penalty() {
 }
 int Grid::get_match_bonus() {
     return mismatch_penalty;
+}
+
+string Grid::get_aligned1() {
+    return aligned1;
+}
+
+string Grid::get_aligned2() {
+    return aligned2;
 }
 
 //setters
@@ -96,12 +103,11 @@ void Grid::populate() {
     cols[seq2.size()][seq1.size()].set_score(calculate(seq2.size(), seq1.size()));
     cols[seq2.size()][seq1.size()].set_score(calculate(seq2.size(), seq1.size()));
 
-    string s = traceback(seq2.size(), seq1.size(), seq1);
-    cout << s << endl;
+    aligned1 = traceback(seq2.size(), seq1.size(), seq1);
+    aligned2 = traceback(seq2.size(), seq1.size(), seq2);
 
-    string s2 = traceback(seq2.size(), seq1.size(), seq2);
-    cout << s2 << endl;
-
+    reverse(aligned1.begin(), aligned1.end());
+    reverse(aligned2.begin(), aligned2.end());
 }
 
 
@@ -140,11 +146,11 @@ string Grid::traceback(int i, int j, string seq) {
     // move out diag so it doesn't need to be coded twice
     if (seq == seq1) {
         if (cols[i][j].get_top_path()) {
-            return "-" + traceback(i, j-1, seq);
+            return "-" + traceback(i-1, j, seq);
         } else if (cols[i][j].get_diag_path()) {
             return string(1, (seq.at(j-1))) + traceback(i-1, j-1, seq);
         } else {
-            return string(1, (seq.at(j-1))) + traceback(i-1, j, seq);
+            return string(1, (seq.at(j-1))) + traceback(i, j-1, seq);
         }
     } else {
         if (cols[i][j].get_top_path()) {
