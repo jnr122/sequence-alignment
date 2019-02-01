@@ -163,7 +163,7 @@ string Grid::traceback(int i, int j, string seq) {
     string s;
 
     // base case
-    if (i == 0 or j == 0){
+    if ((i == 0 and j == 0)){
         return "";
     }
 

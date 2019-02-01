@@ -23,9 +23,11 @@ int main() {
     Grid grid = Grid(strand1, strand2, -2, -1, 1);
 
     // formatted grid output
-    grid.print_grid();
+//    grid.print_grid();
+
 
     // print best global alignmemnts
+    cout << "\n\n\n" << endl;
     cout << grid.get_aligned1() << endl;
     cout << grid.get_aligned2() << endl;
 
