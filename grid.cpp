@@ -38,65 +38,71 @@ Grid::Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int matc
     populate();
 }
 
-// getters and setters
-const string &Grid::get_seq1() const {
-    return seq1;
+Grid::~Grid() {
+
 }
 
-void Grid::set_seq1(const string &seq1) {
-    Grid::seq1 = seq1;
+// getters
+const string &Grid::get_seq1() const {
+    return seq1;
 }
 
 const string &Grid::get_seq2() const {
     return seq2;
 }
 
-void Grid::set_seq2(const string &seq2) {
-    Grid::seq2 = seq2;
-}
-
 const string &Grid::get_aligned1() const {
     return aligned1;
-}
-
-void Grid::set_aligned1(const string &aligned1) {
-    Grid::aligned1 = aligned1;
 }
 
 const string &Grid::get_aligned2() const {
     return aligned2;
 }
 
-void Grid::set_aligned2(const string &aligned2) {
-    Grid::aligned2 = aligned2;
-}
-
 const vector<vector<Square>> &Grid::get_cols() const {
     return cols;
-}
-
-void Grid::set_cols(const vector<vector<Square>> &cols) {
-    Grid::cols = cols;
 }
 
 int Grid::get_gap_penalty() const {
     return gap_penalty;
 }
 
-void Grid::set_gap_penalty(int gap_penalty) {
-    Grid::gap_penalty = gap_penalty;
-}
-
 int Grid::get_mismatch_penalty() const {
     return mismatch_penalty;
 }
 
-void Grid::set_mismatch_penalty(int mismatch_penalty) {
-    Grid::mismatch_penalty = mismatch_penalty;
-}
-
 int Grid::get_match_bonus() const {
     return match_bonus;
+}
+
+// setters
+void Grid::set_seq1(const string &seq1) {
+    Grid::seq1 = seq1;
+}
+
+void Grid::set_seq2(const string &seq2) {
+    Grid::seq2 = seq2;
+}
+
+void Grid::set_aligned1(const string &aligned1) {
+    Grid::aligned1 = aligned1;
+}
+
+
+void Grid::set_aligned2(const string &aligned2) {
+    Grid::aligned2 = aligned2;
+}
+
+void Grid::set_cols(const vector<vector<Square>> &cols) {
+    Grid::cols = cols;
+}
+
+void Grid::set_gap_penalty(int gap_penalty) {
+    Grid::gap_penalty = gap_penalty;
+}
+
+void Grid::set_mismatch_penalty(int mismatch_penalty) {
+    Grid::mismatch_penalty = mismatch_penalty;
 }
 
 void Grid::set_match_bonus(int match_bonus) {
@@ -169,24 +175,22 @@ string Grid::traceback(int i, int j, string seq) {
 
     // move out diag so it doesn't need to be coded twice
     if (seq == seq1) {
-        if (cols[i][j].get_top_path()) {
+        if (cols[i][j].is_top_path()) {
             return "-" + traceback(i-1, j, seq);
-        } else if (cols[i][j].get_diag_path()) {
+        } else if (cols[i][j].is_diag_path()) {
             return string(1, (seq.at(j-1))) + traceback(i-1, j-1, seq);
         } else {
             return string(1, (seq.at(j-1))) + traceback(i, j-1, seq);
         }
     } else {
-        if (cols[i][j].get_top_path()) {
+        if (cols[i][j].is_top_path()) {
             return string(1, (seq.at(i-1))) + traceback(i-1, j, seq);
-        } else if (cols[i][j].get_diag_path()) {
+        } else if (cols[i][j].is_diag_path()) {
             return string(1, (seq.at(i-1))) + traceback(i-1, j-1, seq);
         } else {
             return "-" + traceback(i, j-1, seq);
         }
     }
-
-
 
 }
 
