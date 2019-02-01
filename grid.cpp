@@ -3,15 +3,17 @@
 //
 
 #include "grid.h"
-#include <vector>
-#include <iostream>
+
 #include <iomanip>
+#include <iostream>
 #include <stdio.h>
-#include <string>
 #include <stdlib.h>
+#include <string>
+#include <vector>
 
 using namespace std;
 
+// default constructor
 Grid::Grid() {
     this->seq1 = "atgc";
     this->seq2 = "cgta";
@@ -22,7 +24,7 @@ Grid::Grid() {
     populate();
 }
 
-// TODO: add error handling
+// overloaded constructor
 Grid::Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int match_bonus) {
     this->seq1 = s1;
     this->seq2 = s2;
@@ -33,6 +35,7 @@ Grid::Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int matc
     populate();
 }
 
+// destructor
 Grid::~Grid() {
 
 }
@@ -41,31 +44,24 @@ Grid::~Grid() {
 const string &Grid::get_seq1() const {
     return seq1;
 }
-
 const string &Grid::get_seq2() const {
     return seq2;
 }
-
 const string &Grid::get_aligned1() const {
     return aligned1;
 }
-
 const string &Grid::get_aligned2() const {
     return aligned2;
 }
-
 const vector<vector<Square>> &Grid::get_cols() const {
     return cols;
 }
-
 int Grid::get_gap_penalty() const {
     return gap_penalty;
 }
-
 int Grid::get_mismatch_penalty() const {
     return mismatch_penalty;
 }
-
 int Grid::get_match_bonus() const {
     return match_bonus;
 }
@@ -74,37 +70,27 @@ int Grid::get_match_bonus() const {
 void Grid::set_seq1(const string &seq1) {
     Grid::seq1 = seq1;
 }
-
 void Grid::set_seq2(const string &seq2) {
     Grid::seq2 = seq2;
 }
-
 void Grid::set_aligned1(const string &aligned1) {
     Grid::aligned1 = aligned1;
 }
-
-
 void Grid::set_aligned2(const string &aligned2) {
     Grid::aligned2 = aligned2;
 }
-
 void Grid::set_cols(const vector<vector<Square>> &cols) {
     Grid::cols = cols;
 }
-
 void Grid::set_gap_penalty(int gap_penalty) {
     Grid::gap_penalty = gap_penalty;
 }
-
 void Grid::set_mismatch_penalty(int mismatch_penalty) {
     Grid::mismatch_penalty = mismatch_penalty;
 }
-
 void Grid::set_match_bonus(int match_bonus) {
     Grid::match_bonus = match_bonus;
 }
-
-
 
 // TODO: get rid of all the redundancies here
 void Grid::populate() {
@@ -167,14 +153,6 @@ string Grid::traceback(int i, int j, string seq) {
     if ((i == 0 and j == 0)){
         return "";
     }
-
-    // breaks on:
-    //daf
-    //asdfasdf
-    // not on:
-    //asdfasdf
-    //daf
-
 
     // shouldn't need to do this twice
     if (seq == seq1) {

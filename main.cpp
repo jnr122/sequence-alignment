@@ -1,5 +1,6 @@
-#include "square.h"
 #include "grid.h"
+#include "sequence_pair.h"
+#include "square.h"
 
 #include <iostream>
 #include <string>
@@ -13,21 +14,28 @@ int main() {
     string strand1, strand2;
 
     // get strands
-    cout << "Enter the first DNA sequence: ";
+    cout << "Enter the first sequence: ";
     getline(cin, strand1);
 
-    cout << "Enter the second DNA sequence: ";
+    cout << "Enter the second sequence: ";
     getline(cin, strand2);
+//
+//    // initliaze grid with given strands and penalties
+//    Grid grid = Grid(strand1, strand2, -2, -1, 1);
+//
+//    // print best global alignmemnts
+//    cout << grid.get_aligned1() << endl;
+//    cout << grid.get_aligned2() << endl;
+//
+//    // formatted grid output
+//    grid.print_grid();
 
-    // initliaze grid with given strands and penalties
-    Grid grid = Grid(strand1, strand2, -2, -1, 1);
+    Sequence_pair seq_pair = Sequence_pair(strand1, strand2);
 
-    // print best global alignmemnts
-    cout << grid.get_aligned1() << endl;
-    cout << grid.get_aligned2() << endl;
+    cout << seq_pair.get_seq1() << endl;
+    cout << seq_pair.get_seq2() << endl;
 
-    // formatted grid output
-    grid.print_grid();
+
 
 
 

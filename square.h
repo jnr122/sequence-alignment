@@ -25,7 +25,6 @@ public:
      */
     Square();
 
-
     /*
      * Overloaded Constructor
      * Requires: int score, boolean path vars

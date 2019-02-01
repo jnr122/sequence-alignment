@@ -3,4 +3,4 @@ project(sequence_alignment)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(sequence_alignment main.cpp square.cpp grid.cpp DNA_pair.cpp)
+add_executable(sequence_alignment main.cpp square.cpp grid.cpp sequence_pair.cpp)
