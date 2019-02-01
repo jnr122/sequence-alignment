@@ -6,8 +6,9 @@
 #define SEQUENCE_ALIGNMENT_GRID_H
 
 #include "square.h"
-#include <vector>
+
 #include <string>
+#include <vector>
 
 using namespace std;
 
