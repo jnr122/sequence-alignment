@@ -39,10 +39,11 @@ public:
      * Modifies: nothing
      * Effects: returns field var
      */
-    int get_score();
-    bool get_top_path();
-    bool get_left_path();
-    bool get_diag_path();
+    int get_score() const;
+    bool is_top_path() const;
+    bool is_left_path() const;
+    bool is_diag_path() const;
+    bool is_active() const;
 
     /*
      * Setters for field vars
@@ -54,14 +55,7 @@ public:
     void set_top_path(bool top_path);
     void set_left_path(bool left_path);
     void set_diag_path(bool diag_path);
-
-    /*
-     * Sentinel for active squares
-     * Requires: nothing
-     * Modifies: nothing
-     * Effects: returns bool active
-    */
-    bool is_active();
+    void set_active(bool active);
 };
 
 #endif //SEQUENCE_ALIGNMENT_SQUARE_H

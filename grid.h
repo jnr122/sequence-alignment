@@ -17,7 +17,6 @@ private:
     string seq2;
     string aligned1;
     string aligned2;
-
     vector<vector<Square>> cols;
 
     int gap_penalty;
@@ -82,6 +81,8 @@ public:
      * Effects: constructs default grid
     */
     Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int match_bonus);
+
+    virtual ~Grid();
 
     /*
      * Getters for field vars
