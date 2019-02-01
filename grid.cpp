@@ -8,11 +8,7 @@
 #include <iomanip>
 #include <stdio.h>
 #include <string>
-
-
-
 #include <stdlib.h>
-
 
 using namespace std;
 
@@ -119,8 +115,10 @@ void Grid::populate() {
             Square square;
             if (j == 0) {
                 square = Square(i * gap_penalty);
+                square.set_top_path(true);
             } else if (i == 0) {
                 square = Square(j * gap_penalty);
+                square.set_left_path(true);
             }
 
             row.push_back(square);
@@ -131,10 +129,8 @@ void Grid::populate() {
     // definitely a better way to compute the last square
     cols[seq2.size()][seq1.size()].set_score(calculate(seq2.size(), seq1.size()));
     cols[seq2.size()][seq1.size()].set_score(calculate(seq2.size(), seq1.size()));
-
     aligned1 = traceback(seq2.size(), seq1.size(), seq1);
     aligned2 = traceback(seq2.size(), seq1.size(), seq2);
-
     reverse(aligned1.begin(), aligned1.end());
     reverse(aligned2.begin(), aligned2.end());
 }
@@ -172,7 +168,15 @@ string Grid::traceback(int i, int j, string seq) {
         return "";
     }
 
-    // move out diag so it doesn't need to be coded twice
+    // breaks on:
+    //daf
+    //asdfasdf
+    // not on:
+    //asdfasdf
+    //daf
+
+
+    // shouldn't need to do this twice
     if (seq == seq1) {
         if (cols[i][j].is_top_path()) {
             return "-" + traceback(i-1, j, seq);

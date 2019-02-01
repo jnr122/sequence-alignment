@@ -22,14 +22,13 @@ int main() {
     // initliaze grid with given strands and penalties
     Grid grid = Grid(strand1, strand2, -2, -1, 1);
 
-    // formatted grid output
-//    grid.print_grid();
-
-
     // print best global alignmemnts
-    cout << "\n\n\n" << endl;
     cout << grid.get_aligned1() << endl;
     cout << grid.get_aligned2() << endl;
+
+    // formatted grid output
+    grid.print_grid();
+
 
 
     return 0;
