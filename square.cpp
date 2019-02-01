@@ -6,7 +6,7 @@
 
 
 using namespace std;
-// TODO: add destructor
+
 Square::Square() {
     this->score = 0;
     this->top_path = false;
@@ -23,9 +23,9 @@ Square::Square(int score, bool top_path, bool left_path, bool diag_path, bool ac
     this->active = active;
 }
 
-// TODO: use references for getters and setters
+Square::~Square() {
 
-
+}
 
 // getters
 int Square::get_score() const {
