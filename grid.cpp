@@ -16,7 +16,6 @@
 
 using namespace std;
 
-// TODO: add destructor
 Grid::Grid() {
     this->seq1 = "atgc";
     this->seq2 = "cgta";
