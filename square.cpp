@@ -46,8 +46,6 @@ bool Square::is_active() const {
     return active;
 }
 
-
-
 // setters
 void Square::set_score(int score) {
     Square::score = score;

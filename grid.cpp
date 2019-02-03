@@ -121,8 +121,6 @@ void Grid::populate() {
     reverse(aligned2.begin(), aligned2.end());
 }
 
-
-// TODO: get rid of all the redundancies here
 int Grid::calculate(int i, int j) {
     int top, left, diag;
 
@@ -145,7 +143,6 @@ int Grid::calculate(int i, int j) {
     }
 }
 
-// TODO: get rid of all the redundancies here
 string Grid::traceback(int i, int j, string seq) {
     string s;
 
@@ -154,7 +151,7 @@ string Grid::traceback(int i, int j, string seq) {
         return "";
     }
 
-    // shouldn't need to do this twice
+    // TODO: move out diagonal
     if (seq == seq1) {
         if (cols[i][j].is_top_path()) {
             return "-" + traceback(i-1, j, seq);
@@ -182,9 +179,8 @@ int Grid::get_match_score(char ch1, char ch2) {
     return mismatch_penalty;
 }
 
-// TODO: get rid of all the redundancies here
 int Grid::get_max(int top, int left, int diag, int i, int j) {
-    // lots of redundancy here
+    // TODO: get rid of returns statements, move to bottom only need set_path, set_score once
     if (top >= left)  {
         if (top >= diag) {
             cols[i][j].set_top_path(true);
@@ -208,7 +204,6 @@ int Grid::get_max(int top, int left, int diag, int i, int j) {
     }
 }
 
-// TODO: get rid of all the redundancies here
 void Grid::print_grid() {
     cout << "  |\t\t  ";
     for (int i = 0; i < seq1.size(); i++) {
