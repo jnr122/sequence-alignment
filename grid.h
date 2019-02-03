@@ -18,12 +18,6 @@ class Grid {
 private:
     Sequence_pair &seq_pair;
     vector<vector<Square>> cols;
-public:
-    Sequence_pair &getSeq_pair() const;
-
-    void setSeq_pair(Sequence_pair &seq_pair);
-
-private:
     int gap_penalty;
     int mismatch_penalty;
     int match_bonus;
@@ -95,10 +89,12 @@ public:
      * Modifies: nothing
      * Effects: returns field var
      */
+    Sequence_pair &getSeq_pair() const;
     const vector<vector<Square>> &get_cols() const;
     int get_gap_penalty() const;
     int get_mismatch_penalty() const;
     int get_match_bonus() const;
+
 
     /*
      * Setters for field vars
@@ -106,6 +102,7 @@ public:
      * Modifies: field values
      * Effects: sets new value
     */
+    void setSeq_pair(Sequence_pair &seq_pair);
     void set_cols(const vector<vector<Square>> &cols);
     void set_gap_penalty(int gap_penalty);
     void set_mismatch_penalty(int mismatch_penalty);
