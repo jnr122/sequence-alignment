@@ -9,13 +9,13 @@
 
 using namespace std;
 
- default constructor
+// default constructor
 Sequence_pair::Sequence_pair() {
     this->seq1 = "abcdefg";
     this->seq2 = "gfedcba";
 }
 
- overloaded constructor
+// overloaded constructor
 Sequence_pair::Sequence_pair(string seq1, string seq2) {
     this->seq1 = validate_seq(seq1);
     this->seq2 = validate_seq(seq2);

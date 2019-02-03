@@ -42,6 +42,8 @@ public:
 
     virtual ~Sequence_pair();
 
+
+
     /*
      * Getters for field vars
      * Requires: nothing
