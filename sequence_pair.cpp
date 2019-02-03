@@ -29,7 +29,7 @@ Sequence_pair::~Sequence_pair() {
 // validator
 string Sequence_pair::validate_seq(string seq) {
     while (seq.length() < 1) {
-        cout << "Sequence must be at least one character: ";
+        cout << "Sequence is invalid: ";
         getline(cin, seq);
     }
     return seq;
