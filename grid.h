@@ -16,13 +16,12 @@ using namespace std;
 
 class Grid {
 private:
-    Sequence_pair seqs;
-    string seq1;
-    string seq2;
-    string aligned1;
-    string aligned2;
+    Sequence_pair &seq_pair;
     vector<vector<Square>> cols;
+public:
+    Grid();
 
+private:
     int gap_penalty;
     int mismatch_penalty;
     int match_bonus;
@@ -76,7 +75,6 @@ public:
      * Modifies: grid
      * Effects: constructs default grid
     */
-    Grid();
 
     /*
      * Default Constructor
@@ -84,8 +82,14 @@ public:
      * Modifies: grid
      * Effects: constructs default grid
     */
-    Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int match_bonus);
+    Grid(Sequence_pair &seq_pair, int gap_penalty, int mismatch_penalty, int match_bonus);
 
+    /*
+     * Overloaded print method
+     * Requires: nothing
+     * Modifies: nothing
+     * Effects: prints formatted seq pair
+    */
     friend ostream &operator<<(ostream &os, const Grid &grid);
 
     virtual ~Grid();
@@ -119,14 +123,6 @@ public:
     void set_gap_penalty(int gap_penalty);
     void set_mismatch_penalty(int mismatch_penalty);
     void set_match_bonus(int match_bonus);
-
-    /*
-     * Formatted output
-     * Requires: nothing
-     * Modifies: nothings
-     * Effects: generates grid from populate() for user to see
-    */
-    void print_grid();
 
 };
 
