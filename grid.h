@@ -19,7 +19,9 @@ private:
     Sequence_pair &seq_pair;
     vector<vector<Square>> cols;
 public:
-    Grid();
+    Sequence_pair &getSeq_pair() const;
+
+    void setSeq_pair(Sequence_pair &seq_pair);
 
 private:
     int gap_penalty;
@@ -75,13 +77,6 @@ public:
      * Modifies: grid
      * Effects: constructs default grid
     */
-
-    /*
-     * Default Constructor
-     * Requires: nothing
-     * Modifies: grid
-     * Effects: constructs default grid
-    */
     Grid(Sequence_pair &seq_pair, int gap_penalty, int mismatch_penalty, int match_bonus);
 
     /*
@@ -100,10 +95,6 @@ public:
      * Modifies: nothing
      * Effects: returns field var
      */
-    const string &get_seq1() const;
-    const string &get_seq2() const;
-    const string &get_aligned1() const;
-    const string &get_aligned2() const;
     const vector<vector<Square>> &get_cols() const;
     int get_gap_penalty() const;
     int get_mismatch_penalty() const;
@@ -115,10 +106,6 @@ public:
      * Modifies: field values
      * Effects: sets new value
     */
-    void set_seq1(const string &seq1);
-    void set_seq2(const string &seq2);
-    void set_aligned1(const string &aligned1);
-    void set_aligned2(const string &aligned2);
     void set_cols(const vector<vector<Square>> &cols);
     void set_gap_penalty(int gap_penalty);
     void set_mismatch_penalty(int mismatch_penalty);

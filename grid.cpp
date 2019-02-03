@@ -28,6 +28,11 @@ Grid::~Grid() {
 
 }
 
+// getters
+Sequence_pair &Grid::getSeq_pair() const {
+    return seq_pair;
+}
+
 const vector<vector<Square>> &Grid::get_cols() const {
     return cols;
 }
@@ -41,6 +46,10 @@ int Grid::get_match_bonus() const {
     return match_bonus;
 }
 
+// setters
+void Grid::setSeq_pair(Sequence_pair &seq_pair) {
+    Grid::seq_pair = seq_pair;
+}
 void Grid::set_cols(const vector<vector<Square>> &cols) {
     Grid::cols = cols;
 }
@@ -79,9 +88,12 @@ void Grid::populate() {
     seq_pair.set_aligned1(traceback(seq_pair.get_seq2().size(), seq_pair.get_seq1().size(), seq_pair.get_seq1()));
     seq_pair.set_aligned2(traceback(seq_pair.get_seq2().size(), seq_pair.get_seq1().size(), seq_pair.get_seq2()));
 
-//    seq_pair.set_aligned1(reverse(seq_pair.get_aligned1().begin(), seq_pair.get_aligned1().end()));
-//    seq_pair.set_aligned2(reverse(seq_pair.get_aligned2().begin(), seq_pair.get_aligned2().end()));
-
+    string rev = seq_pair.get_aligned1();
+    reverse(rev.begin(), (rev.end()));
+    seq_pair.set_aligned1(rev);
+    rev = seq_pair.get_aligned2();
+    reverse(rev.begin(), (rev.end()));
+    seq_pair.set_aligned2(rev);
 }
 
 int Grid::calculate(int i, int j) {
@@ -192,6 +204,7 @@ ostream &operator<<(ostream &os, const Grid &grid) {
         cout << "\n";
     }
 }
+
 
 
 
