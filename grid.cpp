@@ -205,26 +205,52 @@ int Grid::get_max(int top, int left, int diag, int i, int j) {
 }
 
 void Grid::print_grid() {
+//    cout << "  |\t\t  ";
+//    for (int i = 0; i < seq1.size(); i++) {
+//        cout << "  " << left << setw(5) << seq1[i];
+//    }
+//
+//    cout << "\n";
+//    for (int i = 0; i < seq1.size(); i++) {
+//        cout << "----------";
+//    }
+//    cout << "\n";
+//    for (int i = 0; i < cols.size(); i++) {
+//        if (i > 0) {
+//            cout << right << setw(1) << seq2[i-1] << " ";
+//            cout << "|";
+//        } else {
+//            cout << "  |";
+//        }
+//
+//        for (int j = 0; j < cols[0].size(); j++){
+//            cout << "  " << left << setw(5) << cols[i][j].get_score();
+//        }
+//        cout << "\n";
+//    }
+}
+
+ostream &operator<<(ostream &os, const Grid &grid) {
     cout << "  |\t\t  ";
-    for (int i = 0; i < seq1.size(); i++) {
-        cout << "  " << left << setw(5) << seq1[i];
+    for (int i = 0; i < grid.seq1.size(); i++) {
+        cout << "  " << left << setw(5) << grid.seq1[i];
     }
 
     cout << "\n";
-    for (int i = 0; i < seq1.size(); i++) {
+    for (int i = 0; i < grid.seq1.size(); i++) {
         cout << "----------";
     }
     cout << "\n";
-    for (int i = 0; i < cols.size(); i++) {
+    for (int i = 0; i < grid.cols.size(); i++) {
         if (i > 0) {
-            cout << right << setw(1) << seq2[i-1] << " ";
+            cout << right << setw(1) << grid.seq2[i-1] << " ";
             cout << "|";
         } else {
             cout << "  |";
         }
 
-        for (int j = 0; j < cols[0].size(); j++){
-            cout << "  " << left << setw(5) << cols[i][j].get_score();
+        for (int j = 0; j < grid.cols[0].size(); j++){
+            cout << "  " << left << setw(5) << grid.cols[i][j].get_score();
         }
         cout << "\n";
     }

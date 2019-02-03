@@ -6,6 +6,7 @@
 #define SEQUENCE_ALIGNMENT_DNA_PAIR_H
 
 #include <string>
+#include <ostream>
 
 using namespace std;
 
@@ -42,7 +43,13 @@ public:
 
     virtual ~Sequence_pair();
 
-
+    /*
+     * Overloaded print method
+     * Requires: nothing
+     * Modifies: nothing
+     * Effects: prints formatted seq pair
+    */
+    friend ostream &operator<<(ostream &os, const Sequence_pair &sequence_pair);
 
     /*
      * Getters for field vars

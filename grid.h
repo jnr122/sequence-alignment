@@ -6,14 +6,17 @@
 #define SEQUENCE_ALIGNMENT_GRID_H
 
 #include "square.h"
+#include "sequence_pair.h"
 
 #include <string>
 #include <vector>
+#include <ostream>
 
 using namespace std;
 
 class Grid {
 private:
+    Sequence_pair seqs;
     string seq1;
     string seq2;
     string aligned1;
@@ -82,6 +85,8 @@ public:
      * Effects: constructs default grid
     */
     Grid(string s1, string s2, int gap_penalty, int mismatch_penalty, int match_bonus);
+
+    friend ostream &operator<<(ostream &os, const Grid &grid);
 
     virtual ~Grid();
 

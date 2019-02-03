@@ -19,21 +19,20 @@ int main() {
 
     cout << "Enter the second sequence: ";
     getline(cin, strand2);
-//
-//    // initliaze grid with given strands and penalties
-//    Grid grid = Grid(strand1, strand2, -2, -1, 1);
-//
-//    // print best global alignmemnts
-//    cout << grid.get_aligned1() << endl;
-//    cout << grid.get_aligned2() << endl;
-//
-//    // formatted grid output
-//    grid.print_grid();
 
-    Sequence_pair seq_pair = Sequence_pair(strand1, strand2);
+    // initliaze grid with given strands and penalties
+    Grid grid = Grid(strand1, strand2, -2, -1, 1);
 
-    cout << seq_pair.get_seq1() << endl;
-    cout << seq_pair.get_seq2() << endl;
+    // print best global alignmemnts
+    cout << grid.get_aligned1() << endl;
+    cout << grid.get_aligned2() << endl;
+
+    // formatted grid output
+//    cout << grid << endl;
+
+//    Sequence_pair seq_pair = Sequence_pair(strand1, strand2);
+
+//    cout << seq_pair << endl;
 
 
 
