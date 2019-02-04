@@ -22,7 +22,7 @@ int main() {
 
     Sequence_pair seq_pair = Sequence_pair(strand1, strand2);
 
-    // initliaze grid with given seuqence pair and penalties
+    // initliaze grid with given seqence pair and penalties
     Grid grid = Grid(seq_pair, -2, -1, 1);
 
     // pair with best alignments
