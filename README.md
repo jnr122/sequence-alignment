@@ -1,4 +1,4 @@
-# Sequence alignment 
+# Sequence Pair alignment 
 
 Recursive dynamic algorithm to find the best possible alignment of two strings given a match, mismatch, and gap score. 
 

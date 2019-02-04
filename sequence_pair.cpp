@@ -26,6 +26,7 @@ string Sequence_pair::validate_seq(string seq) {
     }
     return seq;
 }
+
 // getters
 const string &Sequence_pair::get_seq1() const {
     return seq1;
@@ -54,6 +55,7 @@ void Sequence_pair::set_aligned2(const string &aligned2) {
     Sequence_pair::aligned2 = aligned2;
 }
 
+// overloaded << operator
 ostream &operator<<(ostream &os, const Sequence_pair &sequence_pair) {
     os << "\nseq1: " << sequence_pair.seq1 << "\nseq2: " << sequence_pair.seq2 << "\n\naligned1: "
        << sequence_pair.aligned1  << "\naligned2: " << sequence_pair.aligned2;
