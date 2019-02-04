@@ -28,42 +28,6 @@ Grid::~Grid() {
 
 }
 
-// getters
-Sequence_pair &Grid::get_seq_pair() const {
-    return seq_pair;
-}
-
-const vector<vector<Square>> &Grid::get_cols() const {
-    return cols;
-}
-int Grid::get_gap_penalty() const {
-    return gap_penalty;
-}
-int Grid::get_mismatch_penalty() const {
-    return mismatch_penalty;
-}
-int Grid::get_match_bonus() const {
-    return match_bonus;
-}
-
-// setters
-void Grid::set_seq_pair(Sequence_pair &seq_pair) {
-    Grid::seq_pair = seq_pair;
-}
-void Grid::set_cols(const vector<vector<Square>> &cols) {
-    Grid::cols = cols;
-}
-void Grid::set_gap_penalty(int gap_penalty) {
-    Grid::gap_penalty = gap_penalty;
-}
-void Grid::set_mismatch_penalty(int mismatch_penalty) {
-    Grid::mismatch_penalty = mismatch_penalty;
-}
-void Grid::set_match_bonus(int match_bonus) {
-    Grid::match_bonus = match_bonus;
-}
-
-// TODO: get rid of all the redundancies here
 void Grid::populate() {
     // set up matrix with default values
     for (int i = 0; i <= seq_pair.get_seq2().size(); i++) {
@@ -82,12 +46,17 @@ void Grid::populate() {
         }
         cols.push_back(row);
     }
-    // definitely a better way to compute the last square
+
+    // 'forgets' square i,j for some reason, even though it calculates everything correctly
+    // recalling the method soley to fill in i and j is a working patch
     cols[seq_pair.get_seq2().size()][seq_pair.get_seq1().size()].set_score(calculate(seq_pair.get_seq2().size(), seq_pair.get_seq1().size()));
     cols[seq_pair.get_seq2().size()][seq_pair.get_seq1().size()].set_score(calculate(seq_pair.get_seq2().size(), seq_pair.get_seq1().size()));
+
+    // set both alignments
     seq_pair.set_aligned1(traceback(seq_pair.get_seq2().size(), seq_pair.get_seq1().size(), seq_pair.get_seq1()));
     seq_pair.set_aligned2(traceback(seq_pair.get_seq2().size(), seq_pair.get_seq1().size(), seq_pair.get_seq2()));
 
+    // reverse alignments
     string rev = seq_pair.get_aligned1();
     reverse(rev.begin(), (rev.end()));
     seq_pair.set_aligned1(rev);
@@ -116,6 +85,8 @@ int Grid::calculate(int i, int j) {
             calculate(i,j-1);
         calculate(i, j);
     }
+
+    // add some sort of sentinel return for bad exec
 }
 
 string Grid::traceback(int i, int j, string seq) {
@@ -206,6 +177,40 @@ ostream &operator<<(ostream &os, const Grid &grid) {
     return os;
 }
 
+// getters
+Sequence_pair &Grid::get_seq_pair() const {
+    return seq_pair;
+}
+
+const vector<vector<Square>> &Grid::get_cols() const {
+    return cols;
+}
+int Grid::get_gap_penalty() const {
+    return gap_penalty;
+}
+int Grid::get_mismatch_penalty() const {
+    return mismatch_penalty;
+}
+int Grid::get_match_bonus() const {
+    return match_bonus;
+}
+
+// setters
+void Grid::set_seq_pair(Sequence_pair &seq_pair) {
+    Grid::seq_pair = seq_pair;
+}
+void Grid::set_cols(const vector<vector<Square>> &cols) {
+    Grid::cols = cols;
+}
+void Grid::set_gap_penalty(int gap_penalty) {
+    Grid::gap_penalty = gap_penalty;
+}
+void Grid::set_mismatch_penalty(int mismatch_penalty) {
+    Grid::mismatch_penalty = mismatch_penalty;
+}
+void Grid::set_match_bonus(int match_bonus) {
+    Grid::match_bonus = match_bonus;
+}
 
 
 

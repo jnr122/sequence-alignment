@@ -20,7 +20,7 @@ private:
      * Requires: Sequence string
      * Modifies: Nothing
      * Effects: Returns a valid string
-     */
+    */
     string validate_seq(string seq);
 
 public:
@@ -29,7 +29,7 @@ public:
      * Default constructor
      * Requires: Nothing
      * Modifies: Object field vars
-     * Effects: Initializes object to given vals
+     * Effects: Initializes object to given vals after validation
     */
     Sequence_pair(const string &seq1 = "gatc", const string &seq2 = "catg");
 
@@ -37,7 +37,7 @@ public:
     virtual ~Sequence_pair();
 
     /*
-     * Overloaded print method
+     * Overloaded << operator
      * Requires: nothing
      * Modifies: nothing
      * Effects: prints formatted seq pair
@@ -49,18 +49,18 @@ public:
      * Requires: nothing
      * Modifies: nothing
      * Effects: returns field var
-     */
+    */
     const string &get_seq1() const;
     const string &get_seq2() const;
     const string &get_aligned1() const;
     const string &get_aligned2() const;
 
     /*
-      * Setters for field vars
-      * Requires: new value
-      * Modifies: field values
-      * Effects: sets new value
-     */
+     * Setters for field vars
+     * Requires: new value
+     * Modifies: field values
+     * Effects: sets new value
+    */
     void set_seq1(const string &seq1);
     void set_seq2(const string &seq2);
     void set_aligned1(const string &aligned1);

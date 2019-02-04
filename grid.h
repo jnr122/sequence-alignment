@@ -95,7 +95,6 @@ public:
     int get_mismatch_penalty() const;
     int get_match_bonus() const;
 
-
     /*
      * Setters for field vars
      * Requires: new value
@@ -107,9 +106,6 @@ public:
     void set_gap_penalty(int gap_penalty);
     void set_mismatch_penalty(int mismatch_penalty);
     void set_match_bonus(int match_bonus);
-
-    void print_grid();
-
 };
 
 
