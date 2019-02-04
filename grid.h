@@ -62,14 +62,13 @@ private:
     */
     string traceback(int i, int j, string seq);
 
-
 public:
 
     /*
-     * Default Constructor
-     * Requires: nothing
+     * Constructor
+     * Requires: sequence pair reference, gap penalty, mismatch penalty
      * Modifies: grid
-     * Effects: constructs default grid
+     * Effects: constructs grid grid
     */
     Grid(Sequence_pair &seq_pair, int gap_penalty, int mismatch_penalty, int match_bonus);
 
@@ -81,6 +80,7 @@ public:
     */
     friend ostream &operator<<(ostream &os, const Grid &grid);
 
+
     virtual ~Grid();
 
     /*
@@ -89,7 +89,7 @@ public:
      * Modifies: nothing
      * Effects: returns field var
      */
-    Sequence_pair &getSeq_pair() const;
+    Sequence_pair &get_seq_pair() const;
     const vector<vector<Square>> &get_cols() const;
     int get_gap_penalty() const;
     int get_mismatch_penalty() const;
@@ -102,11 +102,13 @@ public:
      * Modifies: field values
      * Effects: sets new value
     */
-    void setSeq_pair(Sequence_pair &seq_pair);
+    void set_seq_pair(Sequence_pair &seq_pair);
     void set_cols(const vector<vector<Square>> &cols);
     void set_gap_penalty(int gap_penalty);
     void set_mismatch_penalty(int mismatch_penalty);
     void set_match_bonus(int match_bonus);
+
+    void print_grid();
 
 };
 

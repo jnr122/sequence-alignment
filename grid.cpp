@@ -14,12 +14,12 @@
 
 using namespace std;
 
-Grid::Grid(Sequence_pair &seq_pair, int gap_penalty = -2,int mismatch_penalty = -1, int match_bonus = 1): seq_pair(seq_pair),
-                                                                                              gap_penalty(gap_penalty),
-                                                                                              mismatch_penalty(
-                                                                                                      mismatch_penalty),
-                                                                                              match_bonus(
-                                                                                                      match_bonus) {
+// constructor
+Grid::Grid(Sequence_pair &seq_pair, int gap_penalty, int mismatch_penalty, int match_bonus):
+                                                                            seq_pair(seq_pair),
+                                                                            gap_penalty(gap_penalty),
+                                                                            mismatch_penalty(mismatch_penalty),
+                                                                            match_bonus(match_bonus) {
     populate();
 }
 
@@ -29,7 +29,7 @@ Grid::~Grid() {
 }
 
 // getters
-Sequence_pair &Grid::getSeq_pair() const {
+Sequence_pair &Grid::get_seq_pair() const {
     return seq_pair;
 }
 
@@ -47,7 +47,7 @@ int Grid::get_match_bonus() const {
 }
 
 // setters
-void Grid::setSeq_pair(Sequence_pair &seq_pair) {
+void Grid::set_seq_pair(Sequence_pair &seq_pair) {
     Grid::seq_pair = seq_pair;
 }
 void Grid::set_cols(const vector<vector<Square>> &cols) {
@@ -179,8 +179,35 @@ int Grid::get_max(int top, int left, int diag, int i, int j) {
     }
 }
 
+//void Grid::print_grid() {
+//        cout << "  |\t\t  ";
+//    for (int i = 0; i < this->seq_pair.get_seq1().size(); i++) {
+//        cout << "  " << left << setw(5) << this->seq_pair.get_seq1()[i];
+//    }
+//
+//    cout << "\n";
+//    for (int i = 0; i < this->seq_pair.get_seq1().size(); i++) {
+//        cout << "----------";
+//    }
+//    cout << "\n";
+//    for (int i = 0; i < this->cols.size(); i++) {
+//        if (i > 0) {
+//            cout << right << setw(1) <<this->seq_pair.get_seq2()[i-1] << " ";
+//            cout << "|";
+//        } else {
+//            cout << "  |";
+//        }
+//
+//        for (int j = 0; j < this->cols[0].size(); j++){
+//            cout << "  " << left << setw(5) << this->cols[i][j].get_score();
+//        }
+//        cout << "\n";
+//    }
+//
+//}
+
 ostream &operator<<(ostream &os, const Grid &grid) {
-    cout << "  |\t\t  ";
+    os << "  |\t\t  ";
     for (int i = 0; i < grid.seq_pair.get_seq1().size(); i++) {
         cout << "  " << left << setw(5) << grid.seq_pair.get_seq1()[i];
     }
@@ -203,8 +230,8 @@ ostream &operator<<(ostream &os, const Grid &grid) {
         }
         cout << "\n";
     }
+    return os;
 }
-
 
 
 
