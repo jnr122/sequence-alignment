@@ -33,6 +33,7 @@ public:
     */
     Square(int score, bool top_path = false, bool left_path = false, bool diag_path = false, bool active = true);
 
+    // destructor
     virtual ~Square();
 
     /*

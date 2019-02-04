@@ -9,17 +9,9 @@
 
 using namespace std;
 
-// default constructor
-Sequence_pair::Sequence_pair() {
-    this->seq1 = "abcdefg";
-    this->seq2 = "gfedcba";
-}
-
-// overloaded constructor
-Sequence_pair::Sequence_pair(string seq1, string seq2) {
-    this->seq1 = validate_seq(seq1);
-    this->seq2 = validate_seq(seq2);
-}
+// constructor
+Sequence_pair::Sequence_pair(const string &seq1, const string &seq2)
+                : seq1(validate_seq(seq1)), seq2(validate_seq(seq2)) {}
 
 // destructor
 Sequence_pair::~Sequence_pair() {
