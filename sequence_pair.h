@@ -29,18 +29,11 @@ public:
      * Default constructor
      * Requires: Nothing
      * Modifies: Object field vars
-     * Effects: Initializes object to default vals
-     */
-    Sequence_pair();
-
-    /*
-     * Default constructor
-     * Requires: Nothing
-     * Modifies: Object field vars
      * Effects: Initializes object to given vals
     */
-    Sequence_pair(string seq1, string seq2);
+    Sequence_pair(const string &seq1 = "gatc", const string &seq2 = "catg");
 
+    // destructor
     virtual ~Sequence_pair();
 
     /*

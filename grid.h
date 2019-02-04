@@ -80,7 +80,7 @@ public:
     */
     friend ostream &operator<<(ostream &os, const Grid &grid);
 
-
+    // destructor
     virtual ~Grid();
 
     /*

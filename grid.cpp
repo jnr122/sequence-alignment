@@ -179,33 +179,6 @@ int Grid::get_max(int top, int left, int diag, int i, int j) {
     }
 }
 
-//void Grid::print_grid() {
-//        cout << "  |\t\t  ";
-//    for (int i = 0; i < this->seq_pair.get_seq1().size(); i++) {
-//        cout << "  " << left << setw(5) << this->seq_pair.get_seq1()[i];
-//    }
-//
-//    cout << "\n";
-//    for (int i = 0; i < this->seq_pair.get_seq1().size(); i++) {
-//        cout << "----------";
-//    }
-//    cout << "\n";
-//    for (int i = 0; i < this->cols.size(); i++) {
-//        if (i > 0) {
-//            cout << right << setw(1) <<this->seq_pair.get_seq2()[i-1] << " ";
-//            cout << "|";
-//        } else {
-//            cout << "  |";
-//        }
-//
-//        for (int j = 0; j < this->cols[0].size(); j++){
-//            cout << "  " << left << setw(5) << this->cols[i][j].get_score();
-//        }
-//        cout << "\n";
-//    }
-//
-//}
-
 ostream &operator<<(ostream &os, const Grid &grid) {
     os << "  |\t\t  ";
     for (int i = 0; i < grid.seq_pair.get_seq1().size(); i++) {

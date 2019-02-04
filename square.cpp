@@ -6,22 +6,18 @@
 
 using namespace std;
 
-Square::Square() {
-    this->score = 0;
-    this->top_path = false;
-    this->left_path = false;
-    this->diag_path = false;
-    this->active = false;
-}
+Square::Square() : score(0),
+                   top_path(false),
+                   left_path(false),
+                   diag_path(false),
+                   active(false) {}
 
-Square::Square(int score, bool top_path, bool left_path, bool diag_path, bool active) {
-    this->score = score;
-    this->top_path = top_path;
-    this->left_path = left_path;
-    this->diag_path = diag_path;
-    this->active = active;
-}
-
+Square::Square(int score, bool top_path, bool left_path, bool diag_path, bool active) : score(score),
+                                                                                        top_path(top_path),
+                                                                                        left_path(left_path),
+                                                                                        diag_path(diag_path),
+                                                                                        active(active) {}
+// destructor
 Square::~Square() {
 
 }
@@ -67,7 +63,3 @@ void Square::set_diag_path(bool diag_path) {
 void Square::set_active(bool active) {
     Square::active = active;
 }
-
-
-
-
