@@ -2,7 +2,7 @@
 // Created by Jonah Rubin on 2019-01-24.
 //
 
-#include "square.h"
+#include "Square.h"
 
 using namespace std;
 

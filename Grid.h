@@ -5,8 +5,8 @@
 #ifndef SEQUENCE_ALIGNMENT_GRID_H
 #define SEQUENCE_ALIGNMENT_GRID_H
 
-#include "square.h"
-#include "sequence_pair.h"
+#include "Square.h"
+#include "Sequence_pair.h"
 
 #include <string>
 #include <vector>

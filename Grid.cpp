@@ -2,8 +2,8 @@
 // Created by Jonah Rubin on 2019-01-24.
 //
 
-#include "grid.h"
-#include "sequence_pair.h"
+#include "Grid.h"
+#include "Sequence_pair.h"
 
 #include <iomanip>
 #include <iostream>
