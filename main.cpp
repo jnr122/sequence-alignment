@@ -1,6 +1,6 @@
-#include "grid.h"
-#include "sequence_pair.h"
-#include "square.h"
+#include "Grid.h"
+#include "Sequence_pair.h"
+#include "Square.h"
 
 #include <iostream>
 #include <string>

@@ -2,7 +2,7 @@
 // Created by Jonah Rubin on 2019-01-31.
 //
 
-#include "sequence_pair.h"
+#include "Sequence_pair.h"
 
 #include <iostream>
 #include <string>
