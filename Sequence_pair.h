@@ -44,7 +44,7 @@ public:
      * Modifies: Score field var
      * Effects: Calculates the final alignment score
     */
-    void calculate_score();
+    void calculate_score(int match, int mismatch, int gap);
 
     /*
      * Overloaded << operator

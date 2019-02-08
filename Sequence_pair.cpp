@@ -27,14 +27,14 @@ string Sequence_pair::validate_seq(string seq) {
     return seq;
 }
 
-void Sequence_pair::calculate_score() {
+void Sequence_pair::calculate_score(int match, int mismatch, int gap) {
     for (int i = 0; i < aligned1.length(); i++) {
         if (aligned1.at(i) == aligned2.at(i)) {
-            ++score;
+            score += match;
         } else if ((string(1, aligned1.at(i)) == "-") or (string(1, aligned2.at(i)) == "-")) {
-            score -= 2;
+            score += gap;
         } else {
-            --score;
+            score += mismatch;
         }
     }
 }
