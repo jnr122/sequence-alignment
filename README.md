@@ -12,6 +12,7 @@ Example run:
 Enter the first sequence: gattatgactgatggacgatcagatttagaccgtag
 Enter the second sequence: aggagattcacagtattaagacaaaaata
 
+
 seq1: gattatgactgatggacgatcagatttagaccgtag
 seq2: aggagattcacagtattaagacaaaaata
 
