@@ -12,11 +12,10 @@ Square::Square() : score(0),
                    diag_path(false),
                    active(false) {}
 
-Square::Square(int score, bool top_path, bool left_path, bool diag_path, bool active) : score(score),
+Square::Square(int score, bool top_path, bool left_path, bool diag_path) : score(score),
                                                                                         top_path(top_path),
                                                                                         left_path(left_path),
-                                                                                        diag_path(diag_path),
-                                                                                        active(active) {}
+                                                                                        diag_path(diag_path) {}
 // destructor
 Square::~Square() {
 
@@ -38,10 +37,6 @@ bool Square::is_diag_path() const {
     return diag_path;
 }
 
-bool Square::is_active() const {
-    return active;
-}
-
 // setters
 void Square::set_score(int score) {
     Square::score = score;
@@ -57,8 +52,4 @@ void Square::set_left_path(bool left_path) {
 
 void Square::set_diag_path(bool diag_path) {
     Square::diag_path = diag_path;
-}
-
-void Square::set_active(bool active) {
-    Square::active = active;
 }

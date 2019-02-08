@@ -72,17 +72,8 @@ void Grid::populate() {
 int Grid::calculate(int i, int j) {
     int top, left, diag;
 
-    int x = (cols[i-1][j-1]->is_active() and cols[i][j-1]->is_active() and cols[i-1][j]->is_active());
-    int y = (cols[i-1][j-1] and cols[i][j-1] and cols[i-1][j]);
-
-    if (x != y) {
-        cout << "flagged";
-    }
-
-
         // base case
     if (cols[i-1][j-1] and cols[i][j-1] and cols[i-1][j]) {
-
         top  = cols[i-1][j]->get_score() + gap_penalty;
         left = cols[i][j-1]->get_score() + gap_penalty;
         diag = get_match_score(seq_pair.get_seq1().at(j-1), seq_pair.get_seq2().at(i-1)) + cols[i-1][j-1]->get_score();
@@ -141,18 +132,18 @@ int Grid::get_max(int top, int left, int diag, int i, int j) {
     // TODO: get rid of returns statements, move to bottom only need set_path, set_score once
     if (top >= left)  {
         if (top >= diag) {
-            cols[i][j] = make_optional<Square>(Square(top, true, false, false, true));
+            cols[i][j] = make_optional<Square>(Square(top, true, false, false));
             return top;
         } else {
-            cols[i][j] = make_optional<Square>(Square(diag, false, false, true, true));
+            cols[i][j] = make_optional<Square>(Square(diag, false, false, true));
             return diag;
         }
     } else {
         if (left >= diag) {
-            cols[i][j] = make_optional<Square>(Square(left, false, true, false, true));
+            cols[i][j] = make_optional<Square>(Square(left, false, true, false));
             return left;
         } else {
-            cols[i][j] = make_optional<Square>(Square(diag, false, false, true, true));
+            cols[i][j] = make_optional<Square>(Square(diag, false, false, true));
             return diag;
         }
     }
