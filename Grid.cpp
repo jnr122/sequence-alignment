@@ -67,6 +67,9 @@ void Grid::populate() {
     rev = seq_pair.get_aligned2();
     reverse(rev.begin(), (rev.end()));
     seq_pair.set_aligned2(rev);
+
+    seq_pair.calculate_score();
+
 }
 
 int Grid::calculate(int i, int j) {

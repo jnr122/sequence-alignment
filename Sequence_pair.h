@@ -15,7 +15,7 @@ class Sequence_pair {
 private:
     string seq1, seq2, aligned1, aligned2;
 
-    int score;
+    int score = 0;
 
     /*
      * Sequence validator

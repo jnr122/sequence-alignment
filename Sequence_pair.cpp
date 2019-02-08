@@ -27,6 +27,18 @@ string Sequence_pair::validate_seq(string seq) {
     return seq;
 }
 
+void Sequence_pair::calculate_score() {
+    for (int i = 0; i < aligned1.length(); i++) {
+        if (aligned1.at(i) == aligned2.at(i)) {
+            ++score;
+        } else if ((string(1, aligned1.at(i)) == "-") or (string(1, aligned2.at(i)) == "-")) {
+            score -= 2;
+        } else {
+            --score;
+        }
+    }
+}
+
 // getters
 const string &Sequence_pair::get_seq1() const {
     return seq1;
@@ -61,7 +73,8 @@ void Sequence_pair::set_aligned2(const string &aligned2) {
 // overloaded << operator
 ostream &operator<<(ostream &os, const Sequence_pair &sequence_pair) {
     os << "\nseq1: " << sequence_pair.seq1 << "\nseq2: " << sequence_pair.seq2 << "\n\naligned1: "
-       << sequence_pair.aligned1  << "\naligned2: " << sequence_pair.aligned2;
+       << sequence_pair.aligned1  << "\naligned2: " << sequence_pair.aligned2
+       << "\n\n Overall score:" << sequence_pair.score;
     return os;
 }
 
