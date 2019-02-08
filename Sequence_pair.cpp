@@ -40,6 +40,9 @@ const string &Sequence_pair::get_aligned1() const {
 const string &Sequence_pair::get_aligned2() const {
     return aligned2;
 }
+int Sequence_pair::get_score() const {
+    return score;
+}
 
 // setters
 void Sequence_pair::set_seq1(const string &seq1) {

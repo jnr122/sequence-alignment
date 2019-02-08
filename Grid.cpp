@@ -195,6 +195,7 @@ int Grid::get_match_bonus() const {
 // setters
 void Grid::set_seq_pair(Sequence_pair &seq_pair) {
     Grid::seq_pair = seq_pair;
+//    populate();
 }
 void Grid::set_cols(const vector<vector<OptSquare>> &cols) {
     Grid::cols = cols;

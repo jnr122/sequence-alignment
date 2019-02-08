@@ -15,6 +15,8 @@ class Sequence_pair {
 private:
     string seq1, seq2, aligned1, aligned2;
 
+    int score;
+
     /*
      * Sequence validator
      * Requires: Sequence string
@@ -37,6 +39,14 @@ public:
     virtual ~Sequence_pair();
 
     /*
+     * Calculate final alignment score
+     * Requires: Valid sequence pair
+     * Modifies: Score field var
+     * Effects: Calculates the final alignment score
+    */
+    void calculate_score();
+
+    /*
      * Overloaded << operator
      * Requires: nothing
      * Modifies: nothing
@@ -54,6 +64,8 @@ public:
     const string &get_seq2() const;
     const string &get_aligned1() const;
     const string &get_aligned2() const;
+    int get_score() const;
+
 
     /*
      * Setters for field vars
