@@ -88,9 +88,29 @@ int main() {
         passed = false;
     }
 
-    if (passed) {
-        cout << "Passed all test casses" << endl;
+    // 1 is multiples of 2
+    seq_pair = Sequence_pair("asdfasdfasdfasdf", "asdf");
+    Grid grid9 = Grid(seq_pair, -2, -1, 1);
+
+    if (seq_pair.get_score() != -20) {
+        cout << "failed 1 is multiples of 2" << endl;
+        passed = false;
     }
+
+    // 2 is multiples of 1
+    seq_pair = Sequence_pair("asdf", "asdfasdfasdfasdf");
+    Grid grid10 = Grid(seq_pair, -2, -1, 1);
+
+    if (seq_pair.get_score() != -20) {
+        cout << "failed 2 is multiples of 1" << endl;
+        passed = false;
+    }
+
+    if (passed) {
+        cout << "Passed all test cases" << endl;
+    }
+
+
 
 
     return 0;
