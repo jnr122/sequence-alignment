@@ -4,10 +4,13 @@
 
 #include <iostream>
 #include <string>
+#include <optional>
 
 using namespace std;
 
 int main() {
+
+
 
     // declare strands to be aligned
     string strand1, strand2;
