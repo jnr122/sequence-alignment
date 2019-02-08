@@ -8,16 +8,20 @@
 #include "Square.h"
 #include "Sequence_pair.h"
 
+#include <experimental/optional>
 #include <string>
 #include <vector>
 #include <ostream>
 
+
 using namespace std;
+using experimental::optional;
+typedef optional<Square> OptSquare;
 
 class Grid {
 private:
     Sequence_pair &seq_pair;
-    vector<vector<Square>> cols;
+    vector<vector<OptSquare>> cols;
     int gap_penalty;
     int mismatch_penalty;
     int match_bonus;
@@ -88,9 +92,9 @@ public:
      * Requires: nothing
      * Modifies: nothing
      * Effects: returns field var
-     */
+    */
     Sequence_pair &get_seq_pair() const;
-    const vector<vector<Square>> &get_cols() const;
+    const vector<vector<OptSquare>> &get_cols() const;
     int get_gap_penalty() const;
     int get_mismatch_penalty() const;
     int get_match_bonus() const;
@@ -102,7 +106,7 @@ public:
      * Effects: sets new value
     */
     void set_seq_pair(Sequence_pair &seq_pair);
-    void set_cols(const vector<vector<Square>> &cols);
+    void set_cols(const vector<vector<OptSquare>> &cols);
     void set_gap_penalty(int gap_penalty);
     void set_mismatch_penalty(int mismatch_penalty);
     void set_match_bonus(int match_bonus);

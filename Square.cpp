@@ -45,7 +45,6 @@ bool Square::is_active() const {
 // setters
 void Square::set_score(int score) {
     Square::score = score;
-    active = true;
 }
 
 void Square::set_top_path(bool top_path) {
