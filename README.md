@@ -7,6 +7,19 @@ Currently supports:
 https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
 - Linear gap penalties 
 
+Example run:
+
+Enter the first sequence: gattatgactgatggacgatcagatttagaccgtag
+Enter the second sequence: aggagattcacagtattaagacaaaaata
+
+seq1: gattatgactgatggacgatcagatttagaccgtag
+seq2: aggagattcacagtattaagacaaaaata
+
+aligned1: gattatgactgatggacgatcagatttagaccgtag
+aligned2: -agga-gattcacagtat-taagacaaaaa---ta-
+
+Overall score: -13
+
 # Optionals
 
 The Grid class now holds a vector of vector of optional square objects. 
