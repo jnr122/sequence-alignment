@@ -5,7 +5,7 @@
 #ifndef SEQUENCE_ALIGNMENT_GRID_H
 #define SEQUENCE_ALIGNMENT_GRID_H
 
-#include "Square.h"
+//#include "Square.h"
 #include "Sequence_pair.h"
 
 #include <experimental/optional>
@@ -15,6 +15,22 @@
 
 
 using namespace std;
+
+enum paths {top_path, left_path, diag_path, none};
+
+struct Square {
+    // score constructor
+    Square(int score);
+
+    // score and path constructor
+    Square(int score, paths path);
+
+    // fields
+    int score;
+    paths path;
+
+};
+
 using experimental::optional;
 typedef optional<Square> OptSquare;
 

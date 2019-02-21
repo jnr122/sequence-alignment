@@ -1,6 +1,5 @@
 #include "Grid.h"
 #include "Sequence_pair.h"
-#include "Square.h"
 
 #include <iostream>
 #include <string>
@@ -23,7 +22,7 @@ int main() {
     Sequence_pair seq_pair = Sequence_pair(strand1, strand2);
 
     // initialize grid with given sequence pair and penalties
-    auto grid = make_unique<Grid>(seq_pair, -2, -1, 2);
+    auto grid = make_unique<Grid>(seq_pair, -2, -1, 1);
 
     // pair with best alignments
     cout << seq_pair << endl;

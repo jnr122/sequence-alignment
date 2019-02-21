@@ -1,6 +1,5 @@
 #include "Grid.h"
 #include "Sequence_pair.h"
-#include "Square.h"
 
 #include <iostream>
 #include <string>
@@ -10,7 +9,7 @@ using namespace std;
 
 int main() {
 
-    // Testing suite for Seuquence_pair::get_score()
+    // Testing suite for Sequence_pair::get_score()
     // Requires any valid sequence pair (seq length > 0)
 
     bool passed = true;

@@ -16,6 +16,7 @@ using namespace std;
 using experimental::nullopt;
 using experimental::make_optional;
 
+
 // constructor
 Grid::Grid(Sequence_pair &seq_pair, int gap_penalty, int mismatch_penalty, int match_bonus):
                                                                             seq_pair(seq_pair),
@@ -30,6 +31,11 @@ Grid::~Grid() {
 
 }
 
+// Range constructor
+Square::Square(int score, paths path): score(score), path(path) {
+
+}
+
 void Grid::populate() {
     // set up matrix with default values
     for (int i = 0; i <= seq_pair.get_seq2().size(); i++) {
@@ -38,11 +44,9 @@ void Grid::populate() {
 
             OptSquare square = nullopt;
             if (j == 0) {
-                square = Square(i * gap_penalty);
-                square->set_top_path(true);
+                square = Square(i * gap_penalty, top_path);
             } else if (i == 0) {
-                square = Square(j * gap_penalty);
-                square->set_left_path(true);
+                square = Square(j * gap_penalty, left_path);
             }
             row.push_back(square);
         }
@@ -51,8 +55,8 @@ void Grid::populate() {
 
     // 'forgets' square i,j for some reason, even though it calculates everything correctly
     // recalling the method solely to fill in i and j is a working patch
-    cols[seq_pair.get_seq2().size()][seq_pair.get_seq1().size()]->set_score(calculate(seq_pair.get_seq2().size(), seq_pair.get_seq1().size()));
-    cols[seq_pair.get_seq2().size()][seq_pair.get_seq1().size()]->set_score(calculate(seq_pair.get_seq2().size(), seq_pair.get_seq1().size()));
+    cols[seq_pair.get_seq2().size()][seq_pair.get_seq1().size()]-> score = (calculate(seq_pair.get_seq2().size(), seq_pair.get_seq1().size()));
+    cols[seq_pair.get_seq2().size()][seq_pair.get_seq1().size()]-> score =(calculate(seq_pair.get_seq2().size(), seq_pair.get_seq1().size()));
 
     // set both alignments
     seq_pair.set_aligned1(traceback(seq_pair.get_seq2().size(), seq_pair.get_seq1().size(), seq_pair.get_seq1()));
@@ -74,9 +78,9 @@ int Grid::calculate(int i, int j) {
 
         // base case
     if (cols[i-1][j-1] and cols[i][j-1] and cols[i-1][j]) {
-        top  = cols[i-1][j]->get_score() + gap_penalty;
-        left = cols[i][j-1]->get_score() + gap_penalty;
-        diag = get_match_score(seq_pair.get_seq1().at(j-1), seq_pair.get_seq2().at(i-1)) + cols[i-1][j-1]->get_score();
+        top  = cols[i-1][j]-> score + gap_penalty;
+        left = cols[i][j-1]-> score + gap_penalty;
+        diag = get_match_score(seq_pair.get_seq1().at(j-1), seq_pair.get_seq2().at(i-1)) + cols[i-1][j-1]->score;
         return get_max(top, left, diag, i, j);
 
     } else {
@@ -103,18 +107,18 @@ string Grid::traceback(int i, int j, string seq) {
 
     // TODO: move out diagonal
     if (seq == seq_pair.get_seq1()) {
-        if (cols[i][j]->is_top_path()) {
+        if (cols[i][j]->path == top_path) {
             return "-" + traceback(i-1, j, seq);
-        } else if (cols[i][j]->is_diag_path()) {
+        } else if (cols[i][j]->path == diag_path) {
             return string(1, (seq.at(j-1))) + traceback(i-1, j-1, seq);
         } else {
             return string(1, (seq.at(j-1))) + traceback(i, j-1, seq);
         }
         
     } else {
-        if (cols[i][j]->is_top_path()) {
+        if (cols[i][j]->path == top_path) {
             return string(1, (seq.at(i-1))) + traceback(i-1, j, seq);
-        } else if (cols[i][j]->is_diag_path()) {
+        } else if (cols[i][j]->path == diag_path) {
             return string(1, (seq.at(i-1))) + traceback(i-1, j-1, seq);
         } else {
             return "-" + traceback(i, j-1, seq);
@@ -134,18 +138,18 @@ int Grid::get_max(int top, int left, int diag, int i, int j) {
     // TODO: get rid of returns statements, move to bottom only need set_path, set_score once
     if (top >= left)  {
         if (top >= diag) {
-            cols[i][j] = make_optional<Square>(Square(top, true, false, false));
+            cols[i][j] = make_optional<Square>(Square(top, top_path));
             return top;
         } else {
-            cols[i][j] = make_optional<Square>(Square(diag, false, false, true));
+            cols[i][j] = make_optional<Square>(Square(diag, diag_path));
             return diag;
         }
     } else {
         if (left >= diag) {
-            cols[i][j] = make_optional<Square>(Square(left, false, true, false));
+            cols[i][j] = make_optional<Square>(Square(left, left_path));
             return left;
         } else {
-            cols[i][j] = make_optional<Square>(Square(diag, false, false, true));
+            cols[i][j] = make_optional<Square>(Square(diag, diag_path));
             return diag;
         }
     }
@@ -169,7 +173,7 @@ ostream &operator<<(ostream &os, const Grid &grid) {
             cout << "  |";
         }
         for (int j = 0; j < grid.cols[0].size(); j++){
-            cout << "  " << left << setw(5) << grid.cols[i][j]->get_score();
+            cout << "  " << left << setw(5) << grid.cols[i][j]->score;
         }
         cout << "\n";
     }
