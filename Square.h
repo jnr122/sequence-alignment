@@ -5,10 +5,24 @@
 #ifndef SEQUENCE_ALIGNMENT_SQUARE_H
 #define SEQUENCE_ALIGNMENT_SQUARE_H
 
-#include <experimental/optional>
 
 
 using namespace std;
+
+//enum paths {top, left, diag, none};
+//
+//struct Square {
+//    // score constructor
+//    Square(int score);
+//
+//    // score and path constructor
+//    Square(int score, paths path);
+//
+//    // fields
+//    int score;
+//    paths path;
+//
+//};
 
 class Square {
 
@@ -17,7 +31,6 @@ private:
     bool top_path;
     bool left_path;
     bool diag_path;
-    bool active;
 public:
 
     /*

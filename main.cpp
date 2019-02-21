@@ -22,8 +22,8 @@ int main() {
 
     Sequence_pair seq_pair = Sequence_pair(strand1, strand2);
 
-    // initliaze grid with given seqence pair and penalties
-    auto grid = make_unique<Grid>(seq_pair, -2, -1, 1);
+    // initialize grid with given sequence pair and penalties
+    auto grid = make_unique<Grid>(seq_pair, -2, -1, 2);
 
     // pair with best alignments
     cout << seq_pair << endl;
@@ -33,4 +33,3 @@ int main() {
 
     return 0;
 }
-

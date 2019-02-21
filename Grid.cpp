@@ -29,7 +29,6 @@ Grid::Grid(Sequence_pair &seq_pair, int gap_penalty, int mismatch_penalty, int m
 Grid::~Grid() {
 
 }
-//typedef optional<Square> OptSquare;
 
 void Grid::populate() {
     // set up matrix with default values
@@ -45,14 +44,13 @@ void Grid::populate() {
                 square = Square(j * gap_penalty);
                 square->set_left_path(true);
             }
-
             row.push_back(square);
         }
         cols.push_back(row);
     }
 
     // 'forgets' square i,j for some reason, even though it calculates everything correctly
-    // recalling the method soley to fill in i and j is a working patch
+    // recalling the method solely to fill in i and j is a working patch
     cols[seq_pair.get_seq2().size()][seq_pair.get_seq1().size()]->set_score(calculate(seq_pair.get_seq2().size(), seq_pair.get_seq1().size()));
     cols[seq_pair.get_seq2().size()][seq_pair.get_seq1().size()]->set_score(calculate(seq_pair.get_seq2().size(), seq_pair.get_seq1().size()));
 
@@ -69,7 +67,6 @@ void Grid::populate() {
     seq_pair.set_aligned2(rev);
 
     seq_pair.calculate_score(match_bonus, mismatch_penalty, gap_penalty);
-
 }
 
 int Grid::calculate(int i, int j) {
@@ -92,6 +89,8 @@ int Grid::calculate(int i, int j) {
             calculate(i,j-1);
         calculate(i, j);
     }
+
+    return -12345;
 }
 
 string Grid::traceback(int i, int j, string seq) {
@@ -150,7 +149,6 @@ int Grid::get_max(int top, int left, int diag, int i, int j) {
             return diag;
         }
     }
-
 }
 
 ostream &operator<<(ostream &os, const Grid &grid) {
@@ -198,7 +196,6 @@ int Grid::get_match_bonus() const {
 // setters
 void Grid::set_seq_pair(Sequence_pair &seq_pair) {
     Grid::seq_pair = seq_pair;
-//    populate();
 }
 void Grid::set_cols(const vector<vector<OptSquare>> &cols) {
     Grid::cols = cols;

@@ -9,8 +9,7 @@ using namespace std;
 Square::Square() : score(0),
                    top_path(false),
                    left_path(false),
-                   diag_path(false),
-                   active(false) {}
+                   diag_path(false) {}
 
 Square::Square(int score, bool top_path, bool left_path, bool diag_path) : score(score),
                                                                                         top_path(top_path),
