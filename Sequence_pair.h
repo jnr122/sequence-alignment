@@ -11,10 +11,8 @@
 using namespace std;
 
 class Sequence_pair {
-
 private:
     string seq1, seq2, aligned1, aligned2;
-
     int score = 0;
 
     /*
@@ -26,7 +24,6 @@ private:
     string validate_seq(string seq);
 
 public:
-
     /*
      * Default constructor
      * Requires: Nothing
@@ -55,6 +52,14 @@ public:
     friend ostream &operator<<(ostream &os, const Sequence_pair &sequence_pair);
 
     /*
+     * Overloaded == operator
+     * Requires: nothing
+     * Modifies: nothing
+     * Effects: gets equality of two sequence objects
+    */
+    bool operator==(const Sequence_pair &sequence_pair) const;
+
+    /*
      * Getters for field vars
      * Requires: nothing
      * Modifies: nothing
@@ -66,7 +71,6 @@ public:
     const string &get_aligned2() const;
     int get_score() const;
 
-
     /*
      * Setters for field vars
      * Requires: new value
@@ -77,7 +81,6 @@ public:
     void set_seq2(const string &seq2);
     void set_aligned1(const string &aligned1);
     void set_aligned2(const string &aligned2);
-
 };
 
 #endif //SEQUENCE_ALIGNMENT_DNA_PAIR_H

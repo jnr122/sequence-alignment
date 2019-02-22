@@ -7,8 +7,6 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 // constructor
 Sequence_pair::Sequence_pair(const string &seq1, const string &seq2)
                 : seq1(validate_seq(seq1)), seq2(validate_seq(seq2)) {}
@@ -68,6 +66,12 @@ void Sequence_pair::set_aligned1(const string &aligned1) {
 }
 void Sequence_pair::set_aligned2(const string &aligned2) {
     Sequence_pair::aligned2 = aligned2;
+}
+
+// overloaded == operator
+bool Sequence_pair::operator==(const Sequence_pair &sequence_pair) const {
+    return seq1 == sequence_pair.seq1 &&
+           seq2 == sequence_pair.seq2;
 }
 
 // overloaded << operator

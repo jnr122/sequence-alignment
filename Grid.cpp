@@ -31,7 +31,7 @@ Grid::~Grid() {
 
 }
 
-// Range constructor
+// Square constructor
 Square::Square(int score, paths path): score(score), path(path) {
 
 }
@@ -94,11 +94,11 @@ int Grid::calculate(int i, int j) {
         calculate(i, j);
     }
 
+    // shouldn't get here
     return -12345;
 }
 
 string Grid::traceback(int i, int j, string seq) {
-    string s;
 
     // base case
     if ((i == 0 and j == 0)){
@@ -153,6 +153,10 @@ int Grid::get_max(int top, int left, int diag, int i, int j) {
             return diag;
         }
     }
+}
+
+bool Grid::operator==(const Grid &g) const {
+    return seq_pair == g.seq_pair;
 }
 
 ostream &operator<<(ostream &os, const Grid &grid) {
@@ -213,6 +217,7 @@ void Grid::set_mismatch_penalty(int mismatch_penalty) {
 void Grid::set_match_bonus(int match_bonus) {
     Grid::match_bonus = match_bonus;
 }
+
 
 
 

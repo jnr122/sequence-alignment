@@ -5,24 +5,17 @@
 #ifndef SEQUENCE_ALIGNMENT_GRID_H
 #define SEQUENCE_ALIGNMENT_GRID_H
 
-//#include "Square.h"
 #include "Sequence_pair.h"
 
 #include <experimental/optional>
-#include <string>
 #include <vector>
 #include <ostream>
 
-
-using namespace std;
-
-enum paths {top_path, left_path, diag_path, none};
+enum paths {top_path, left_path, diag_path};
 
 struct Square {
-    // score constructor
-    Square(int score);
 
-    // score and path constructor
+    // Square constructor
     Square(int score, paths path);
 
     // fields
@@ -99,6 +92,14 @@ public:
      * Effects: prints formatted seq pair
     */
     friend ostream &operator<<(ostream &os, const Grid &grid);
+
+    /*
+     * Overloaded equality operator
+     * Requires: nothing
+     * Modifies: nothing
+     * Effects: checks equality of two grids
+    */
+    bool operator==(const Grid &rhs) const;
 
     // destructor
     virtual ~Grid();
