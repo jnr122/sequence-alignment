@@ -23,7 +23,6 @@ Grid::Grid(Sequence_pair &seq_pair, int gap_penalty, int mismatch_penalty, int m
                                                                             gap_penalty(gap_penalty),
                                                                             mismatch_penalty(mismatch_penalty),
                                                                             match_bonus(match_bonus) {
-    populate();
 }
 
 // destructor

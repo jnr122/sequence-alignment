@@ -1,4 +1,5 @@
 #include "Grid.h"
+#include "Local_Grid.h"
 #include "Sequence_pair.h"
 
 #include <iostream>
@@ -22,13 +23,16 @@ int main() {
     Sequence_pair seq_pair = Sequence_pair(strand1, strand2);
 
     // initialize grid with given sequence pair and penalties
-    auto grid = make_unique<Grid>(seq_pair, -2, -1, 1);
+    auto grid = make_unique<Local_Grid>(seq_pair, -2, -1, 2);
+
+    grid->populate();
 
     // pair with best alignments
     cout << seq_pair << endl;
 
     // formatted grid output
     cout << *grid << endl;
+
 
     return 0;
 }
