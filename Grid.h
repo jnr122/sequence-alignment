@@ -34,6 +34,9 @@ protected:
     int gap_penalty;
     int mismatch_penalty;
     int match_bonus;
+    bool multiple_alignments;
+
+protected:
 
     /*
      * Recursively traverses matrix, calculating scores
@@ -41,7 +44,7 @@ protected:
      * Modifies: cols, the 2d vector of squares
      * Effects: calculates and sets correct scores
     */
-    virtual int calculate(int i, int j);
+    int calculate(int i, int j);
 
     /*
      * Gets the max of 3 scores
@@ -115,6 +118,7 @@ public:
     int get_gap_penalty() const;
     int get_mismatch_penalty() const;
     int get_match_bonus() const;
+    bool get_multiple_alignments() const;
 
     /*
      * Setters for field vars
@@ -127,7 +131,9 @@ public:
     void set_gap_penalty(int gap_penalty);
     void set_mismatch_penalty(int mismatch_penalty);
     void set_match_bonus(int match_bonus);
+    void set_multiple_alignments(bool multiple_alignments);
 };
+
 
 
 #endif //SEQUENCE_ALIGNMENT_GRID_H

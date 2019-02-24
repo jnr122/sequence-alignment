@@ -22,7 +22,9 @@ Grid::Grid(Sequence_pair &seq_pair, int gap_penalty, int mismatch_penalty, int m
                                                                             seq_pair(seq_pair),
                                                                             gap_penalty(gap_penalty),
                                                                             mismatch_penalty(mismatch_penalty),
-                                                                            match_bonus(match_bonus) {
+                                                                            match_bonus(match_bonus),
+                                                                            multiple_alignments(false) {
+
 }
 
 // destructor
@@ -134,6 +136,10 @@ int Grid::get_match_score(char ch1, char ch2) {
 
 int Grid::get_max(int top, int left, int diag, int i, int j) {
 
+    if (top == left or diag == top or diag == left) {
+        multiple_alignments = true;
+    }
+
     // TODO: get rid of returns statements, move to bottom only need set_path, set_score once
     if (top >= left)  {
         if (top >= diag) {
@@ -200,6 +206,10 @@ int Grid::get_match_bonus() const {
     return match_bonus;
 }
 
+bool Grid::get_multiple_alignments() const {
+    return multiple_alignments;
+}
+
 // setters
 void Grid::set_seq_pair(Sequence_pair &seq_pair) {
     Grid::seq_pair = seq_pair;
@@ -215,6 +225,10 @@ void Grid::set_mismatch_penalty(int mismatch_penalty) {
 }
 void Grid::set_match_bonus(int match_bonus) {
     Grid::match_bonus = match_bonus;
+}
+
+void Grid::set_multiple_alignments(bool multiple_alignments) {
+    Grid::multiple_alignments = multiple_alignments;
 }
 
 

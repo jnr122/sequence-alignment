@@ -97,6 +97,10 @@ string Local_Grid::traceback(int i, int j, string seq) {
 
 int Local_Grid::get_max(int top, int left, int diag, int i, int j) {
 
+    if (top == left or diag == top or diag == left) {
+        multiple_alignments = true;
+    }
+
     int max;
 
     // TODO: get rid of returns statements, move to bottom only need set_path, set_score once
