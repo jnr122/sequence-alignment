@@ -52,12 +52,9 @@ void Grid::populate() {
         cols.push_back(row);
     }
 
-    // 'forgets' square i,j for some reason, even though it calculates everything correctly
-    // recalling the method solely to fill in i and j is a working patch
     cols[seq_pair.get_seq2().size()][seq_pair.get_seq1().size()]-> score = (calculate(seq_pair.get_seq2().size(), seq_pair.get_seq1().size()));
-    cols[seq_pair.get_seq2().size()][seq_pair.get_seq1().size()]-> score =(calculate(seq_pair.get_seq2().size(), seq_pair.get_seq1().size()));
 
-    // set both alignments
+    // set both alignments - probably a way to do this in one pass
     seq_pair.set_global_aligned1(traceback(seq_pair.get_seq2().size(), seq_pair.get_seq1().size(), seq_pair.get_seq1()));
     seq_pair.set_global_aligned2(traceback(seq_pair.get_seq2().size(), seq_pair.get_seq1().size(), seq_pair.get_seq2()));
 
@@ -75,7 +72,7 @@ void Grid::populate() {
 int Grid::calculate(int i, int j) {
     int top, left, diag;
 
-        // base case
+    // base case
     if (cols[i-1][j-1] and cols[i][j-1] and cols[i-1][j]) {
         top  = cols[i-1][j]-> score + gap_penalty;
         left = cols[i][j-1]-> score + gap_penalty;
@@ -93,8 +90,7 @@ int Grid::calculate(int i, int j) {
         calculate(i, j);
     }
 
-    // shouldn't get here
-    return -12345;
+    return calculate(i, j);
 }
 
 string Grid::traceback(int i, int j, string seq) {
@@ -134,7 +130,7 @@ int Grid::get_match_score(char ch1, char ch2) {
 
 int Grid::get_max(int top, int left, int diag, int i, int j) {
 
-    // TODO: get rid of returns statements, move to bottom only need set_path, set_score once
+    // TODO: get rid of returns statements
     if (top >= left)  {
         if (top >= diag) {
             cols[i][j] = make_optional<Square>(Square(top, top_path));
@@ -216,8 +212,3 @@ void Grid::set_mismatch_penalty(int mismatch_penalty) {
 void Grid::set_match_bonus(int match_bonus) {
     Grid::match_bonus = match_bonus;
 }
-
-
-
-
-
