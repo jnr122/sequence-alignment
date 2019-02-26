@@ -69,7 +69,7 @@ void Grid::populate() {
     reverse(rev.begin(), (rev.end()));
     seq_pair.set_aligned2(rev);
 
-    seq_pair.calculate_score(match_bonus, mismatch_penalty, gap_penalty);
+    seq_pair.set_score(cols[cols.size()-1][cols[0].size()-1]->score);
 }
 
 int Grid::calculate(int i, int j) {

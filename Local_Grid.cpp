@@ -51,6 +51,7 @@ void Local_Grid::populate() {
             }
         }
     }
+    
 
     // set both alignments
     seq_pair.set_aligned1(traceback(col, row, seq_pair.get_seq1()));
@@ -64,7 +65,9 @@ void Local_Grid::populate() {
     reverse(rev.begin(), (rev.end()));
     seq_pair.set_aligned2(rev);
 
-    seq_pair.calculate_score(match_bonus, mismatch_penalty, gap_penalty);
+    seq_pair.set_score(cols[col][row]->score);
+
+
 }
 
 string Local_Grid::traceback(int i, int j, string seq) {

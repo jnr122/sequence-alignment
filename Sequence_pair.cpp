@@ -25,18 +25,6 @@ string Sequence_pair::validate_seq(string seq) {
     return seq;
 }
 
-void Sequence_pair::calculate_score(int match, int mismatch, int gap) {
-    for (int i = 0; i < aligned1.length(); i++) {
-        if (aligned1.at(i) == aligned2.at(i)) {
-            score += match;
-        } else if ((string(1, aligned1.at(i)) == "-") or (string(1, aligned2.at(i)) == "-")) {
-            score += gap;
-        } else {
-            score += mismatch;
-        }
-    }
-}
-
 // getters
 const string &Sequence_pair::get_seq1() const {
     return seq1;
@@ -67,6 +55,10 @@ void Sequence_pair::set_aligned1(const string &aligned1) {
 void Sequence_pair::set_aligned2(const string &aligned2) {
     Sequence_pair::aligned2 = aligned2;
 }
+void Sequence_pair::set_score(int score) {
+    Sequence_pair::score = score;
+}
+
 
 // overloaded == operator
 bool Sequence_pair::operator==(const Sequence_pair &sequence_pair) const {

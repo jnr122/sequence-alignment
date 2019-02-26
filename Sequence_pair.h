@@ -36,14 +36,6 @@ public:
     virtual ~Sequence_pair();
 
     /*
-     * Calculate final alignment score
-     * Requires: Valid sequence pair
-     * Modifies: Score field var
-     * Effects: Calculates the final alignment score
-    */
-    void calculate_score(int match, int mismatch, int gap);
-
-    /*
      * Overloaded << operator
      * Requires: nothing
      * Modifies: nothing
@@ -81,6 +73,7 @@ public:
     void set_seq2(const string &seq2);
     void set_aligned1(const string &aligned1);
     void set_aligned2(const string &aligned2);
+    void set_score(int score);
 };
 
 #endif //SEQUENCE_ALIGNMENT_DNA_PAIR_H
