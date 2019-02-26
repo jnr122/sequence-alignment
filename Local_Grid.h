@@ -18,7 +18,7 @@ public:
      * Modifies: cols, the 2d vector of squares
      * Effects: generates actual grid
     */
-    virtual void populate() override;
+    void populate() override;
 
     /*
      * Gets the max of 3 scores
@@ -26,7 +26,7 @@ public:
      * Modifies: nothing
      * Effects: gives max
     */
-    virtual int get_max(int top, int left, int diag, int i, int j) override;
+    int get_max(int top, int left, int diag, int i, int j) override;
 
     /*
      * Uses assembled grid to get optimal alignment
@@ -34,8 +34,7 @@ public:
      * Modifies: nothing
      * Effects: returns two aligned strings in a vector
     */
-    virtual string traceback(int i, int j, string seq) override;
-
+    string traceback(int i, int j, string seq) override;
 
 };
 

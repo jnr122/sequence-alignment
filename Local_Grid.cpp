@@ -54,18 +54,18 @@ void Local_Grid::populate() {
     
 
     // set both alignments
-    seq_pair.set_aligned1(traceback(col, row, seq_pair.get_seq1()));
-    seq_pair.set_aligned2(traceback(col, row, seq_pair.get_seq2()));
+    seq_pair.set_local_aligned1(traceback(col, row, seq_pair.get_seq1()));
+    seq_pair.set_local_aligned2(traceback(col, row, seq_pair.get_seq2()));
 
     // reverse alignments
-    string rev = seq_pair.get_aligned1();
+    string rev = seq_pair.get_local_aligned1();
     reverse(rev.begin(), (rev.end()));
-    seq_pair.set_aligned1(rev);
-    rev = seq_pair.get_aligned2();
+    seq_pair.set_local_aligned1(rev);
+    rev = seq_pair.get_local_aligned2();
     reverse(rev.begin(), (rev.end()));
-    seq_pair.set_aligned2(rev);
+    seq_pair.set_local_aligned2(rev);
 
-    seq_pair.set_score(cols[col][row]->score);
+    seq_pair.set_local_score(cols[col][row]->score);
 
 
 }

@@ -12,8 +12,9 @@ using namespace std;
 
 class Sequence_pair {
 private:
-    string seq1, seq2, aligned1, aligned2;
-    int score = 0;
+    string seq1, seq2, global_aligned1, global_aligned2, local_aligned1, local_aligned2;
+    int global_score = 0;
+    int local_score = 0;
 
     /*
      * Sequence validator
@@ -59,9 +60,12 @@ public:
     */
     const string &get_seq1() const;
     const string &get_seq2() const;
-    const string &get_aligned1() const;
-    const string &get_aligned2() const;
-    int get_score() const;
+    const string &get_global_aligned1() const;
+    const string &get_global_aligned2() const;
+    const string &get_local_aligned1() const;
+    const string &get_local_aligned2() const;
+    int get_global_score() const;
+    int get_local_score() const;
 
     /*
      * Setters for field vars
@@ -71,9 +75,12 @@ public:
     */
     void set_seq1(const string &seq1);
     void set_seq2(const string &seq2);
-    void set_aligned1(const string &aligned1);
-    void set_aligned2(const string &aligned2);
-    void set_score(int score);
+    void set_global_aligned1(const string &aligned1);
+    void set_global_aligned2(const string &aligned2);
+    void set_local_aligned1(const string &aligned1);
+    void set_local_aligned2(const string &aligned2);
+    void set_global_score(int score);
+    void set_local_score(int score);
 };
 
 #endif //SEQUENCE_ALIGNMENT_DNA_PAIR_H

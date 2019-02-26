@@ -58,18 +58,18 @@ void Grid::populate() {
     cols[seq_pair.get_seq2().size()][seq_pair.get_seq1().size()]-> score =(calculate(seq_pair.get_seq2().size(), seq_pair.get_seq1().size()));
 
     // set both alignments
-    seq_pair.set_aligned1(traceback(seq_pair.get_seq2().size(), seq_pair.get_seq1().size(), seq_pair.get_seq1()));
-    seq_pair.set_aligned2(traceback(seq_pair.get_seq2().size(), seq_pair.get_seq1().size(), seq_pair.get_seq2()));
+    seq_pair.set_global_aligned1(traceback(seq_pair.get_seq2().size(), seq_pair.get_seq1().size(), seq_pair.get_seq1()));
+    seq_pair.set_global_aligned2(traceback(seq_pair.get_seq2().size(), seq_pair.get_seq1().size(), seq_pair.get_seq2()));
 
     // reverse alignments
-    string rev = seq_pair.get_aligned1();
+    string rev = seq_pair.get_global_aligned1();
     reverse(rev.begin(), (rev.end()));
-    seq_pair.set_aligned1(rev);
-    rev = seq_pair.get_aligned2();
+    seq_pair.set_global_aligned1(rev);
+    rev = seq_pair.get_global_aligned2();
     reverse(rev.begin(), (rev.end()));
-    seq_pair.set_aligned2(rev);
+    seq_pair.set_global_aligned2(rev);
 
-    seq_pair.set_score(cols[cols.size()-1][cols[0].size()-1]->score);
+    seq_pair.set_global_score(cols[cols.size()-1][cols[0].size()-1]->score);
 }
 
 int Grid::calculate(int i, int j) {
@@ -165,7 +165,7 @@ ostream &operator<<(ostream &os, const Grid &grid) {
     }
     cout << "\n";
     for (int i = 0; i < grid.seq_pair.get_seq1().size(); i++) {
-        cout << "----------";
+        cout << "---------";
     }
     cout << "\n";
     for (int i = 0; i < grid.cols.size(); i++) {

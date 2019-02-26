@@ -32,14 +32,23 @@ const string &Sequence_pair::get_seq1() const {
 const string &Sequence_pair::get_seq2() const {
     return seq2;
 }
-const string &Sequence_pair::get_aligned1() const {
-    return aligned1;
+const string &Sequence_pair::get_global_aligned1() const {
+    return global_aligned1;
 }
-const string &Sequence_pair::get_aligned2() const {
-    return aligned2;
+const string &Sequence_pair::get_global_aligned2() const {
+    return global_aligned2;
 }
-int Sequence_pair::get_score() const {
-    return score;
+const string &Sequence_pair::get_local_aligned1() const {
+    return local_aligned1;
+}
+const string &Sequence_pair::get_local_aligned2() const {
+    return local_aligned2;
+}
+int Sequence_pair::get_global_score() const {
+    return global_score;
+}
+int Sequence_pair::get_local_score() const {
+    return local_score;
 }
 
 // setters
@@ -49,16 +58,24 @@ void Sequence_pair::set_seq1(const string &seq1) {
 void Sequence_pair::set_seq2(const string &seq2) {
     Sequence_pair::seq2 = seq2;
 }
-void Sequence_pair::set_aligned1(const string &aligned1) {
-    Sequence_pair::aligned1 = aligned1;
+void Sequence_pair::set_global_aligned1(const string &aligned1) {
+    Sequence_pair::global_aligned1 = aligned1;
 }
-void Sequence_pair::set_aligned2(const string &aligned2) {
-    Sequence_pair::aligned2 = aligned2;
+void Sequence_pair::set_global_aligned2(const string &aligned2) {
+    Sequence_pair::global_aligned2 = aligned2;
 }
-void Sequence_pair::set_score(int score) {
-    Sequence_pair::score = score;
+void Sequence_pair::set_local_aligned1(const string &aligned1) {
+    Sequence_pair::local_aligned1 = aligned1;
 }
-
+void Sequence_pair::set_local_aligned2(const string &aligned2) {
+    Sequence_pair::local_aligned2 = aligned2;
+}
+void Sequence_pair::set_global_score(int score) {
+    Sequence_pair::global_score = score;
+}
+void Sequence_pair::set_local_score(int score) {
+    Sequence_pair::local_score = score;
+}
 
 // overloaded == operator
 bool Sequence_pair::operator==(const Sequence_pair &sequence_pair) const {
@@ -68,9 +85,11 @@ bool Sequence_pair::operator==(const Sequence_pair &sequence_pair) const {
 
 // overloaded << operator
 ostream &operator<<(ostream &os, const Sequence_pair &sequence_pair) {
-    os << "\nseq1: " << sequence_pair.seq1 << "\nseq2: " << sequence_pair.seq2 << "\n\naligned1: "
-       << sequence_pair.aligned1  << "\naligned2: " << sequence_pair.aligned2
-       << "\n\nOverall score: " << sequence_pair.score;
+    os << "\nseq1: " << sequence_pair.seq1 << "\nseq2: " << sequence_pair.seq2 << "\n\nGlobal aligned1: "
+       << sequence_pair.global_aligned1  << "\nGlobal aligned2: " << sequence_pair.global_aligned2
+       << "\n\nOverall global score: " << sequence_pair.global_score << "\n\nLocal aligned1: "
+       << sequence_pair.local_aligned1  << "\nLocal aligned2: " << sequence_pair.local_aligned2
+       << "\n\nOverall local score: " << sequence_pair.local_score ;
     return os;
 }
 
